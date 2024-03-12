@@ -244,8 +244,8 @@ public class Console {
 							break;
 						} else {
 
-							JOptionPane.showMessageDialog(null,
-									"Salario inferior al salario minimo, por problemas legales ingrese un valor superior a $4833\r\n");
+							//JOptionPane.showMessageDialog(null,
+									//"Salario inferior al salario minimo, por problemas legales ingrese un valor superior a $4833\r\n");
 
 						}
 					}
@@ -595,8 +595,8 @@ public class Console {
 	////////////////////////////////////////
 	private void calSalary() {
 		double dayExpense = admin.calcDailyExpense();
-		JOptionPane.showMessageDialog(null,
-				"$" + gastoTotal + " es el gasto total de la obra generado el " + new Date());
+		//JOptionPane.showMessageDialog(null,
+				//"$" + gastoTotal + " es el gasto total de la obra generado el " + new Date());
 
 	}
 }
