@@ -21,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        admin.addJob(new Job("Jefe de obra", 12000));
+        admin.addJob(new Job("Jefe de obrx", 12000));
         admin.addJob(new Job("Albañil", 7500));
         admin.addJob(new Job("Soldador", 7000));
         admin.addJob(new Job("Electricista", 8000));
