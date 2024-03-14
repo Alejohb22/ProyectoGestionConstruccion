@@ -48,7 +48,7 @@ public class Main extends Application {
         Image imageTrabajadores = new Image(getClass().getResourceAsStream("/resources/trabajadores.gif"));
         ImageView imageViewTrabajadores = new ImageView(imageTrabajadores);
         Button trabajadoresButton = new Button("Trabajadores", imageViewTrabajadores);
-        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;");
+        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white; -fx-font-family: Algerian");
         trabajadoresButton.setMinWidth(200);
         trabajadoresButton.setAlignment(Pos.CENTER);
         trabajadoresButton.setContentDisplay(ContentDisplay.TOP);
@@ -65,7 +65,7 @@ public class Main extends Application {
         Image imageMateriales = new Image(getClass().getResourceAsStream("/resources/gif materiales.gif"));
         ImageView imageViewMateriales = new ImageView(imageMateriales);
         Button materialesButton = new Button("Materiales", imageViewMateriales);
-        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;");
+        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white; -fx-font-family: Algerian");
         materialesButton.setMinWidth(200);
         materialesButton.setAlignment(Pos.CENTER);
         materialesButton.setContentDisplay(ContentDisplay.TOP);
@@ -79,14 +79,15 @@ public class Main extends Application {
         boxMateriales.getChildren().addAll(materialesButton);
         boxMateriales.setAlignment(Pos.CENTER_RIGHT);
 
-        Button calcularButton = new Button("Calcular precio total de la obra para el día de hoy");
-        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;");
+        Button calcularButton = new Button("Calcular gasto del dia");
+        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;-fx-font-family: Algerian");
+
         calcularButton.setMinWidth(400);
         calcularButton.setAlignment(Pos.CENTER);
         calcularButton.setOnAction(e -> calSalary());
 
         Button salirButton = new Button("Salir");
-        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;");
+        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;-fx-font-family: Algerian");
         salirButton.setMinWidth(100);
         salirButton.setAlignment(Pos.CENTER);
         salirButton.setOnAction(e -> primaryStage.close());
@@ -95,6 +96,9 @@ public class Main extends Application {
         bottomButtonsBox.getChildren().addAll(calcularButton, salirButton);
         bottomButtonsBox.setAlignment(Pos.CENTER);
         bottomButtonsBox.setPadding(new Insets(20));
+
+
+
 
         root.setCenter(boxCalcular);
         root.setLeft(boxTrabajadores);
