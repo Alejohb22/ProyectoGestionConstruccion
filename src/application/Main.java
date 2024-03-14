@@ -39,7 +39,7 @@ public class Main extends Application {
         VBox tituloMenuPrincipal = new VBox(20);
 
         tituloMenuPrincipal.setPadding(new Insets(50, 0, 0, 0));
-        tituloMenuPrincipal.setStyle("-fx-background-color: #0a2057;");
+        tituloMenuPrincipal.setStyle("-fx-background-color: #0a2057;");//color fondo titulo
 
 
 
@@ -48,7 +48,7 @@ public class Main extends Application {
 
         VBox menuVBox = new VBox(20);
         menuVBox.setPadding(new Insets(50, 0, 0, 0));
-        menuVBox.setStyle("-fx-background-color: #0a2057;");
+        menuVBox.setStyle("-fx-background-color: #0a2057;"); //color fondo botones
 
 
 
