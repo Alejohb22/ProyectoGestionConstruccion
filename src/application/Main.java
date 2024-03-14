@@ -27,14 +27,21 @@ public class Main extends Application {
         admin.addJob(new Job("Electricista", 8000));
 
         BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 600);
+
+        Label titleLabel = new Label("Gestión de Obras de Construcción");
+        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;");
+
+        VBox tituloMenuPrincipal = new VBox(20);
+        tituloMenuPrincipal.setPadding(new Insets(50,0,0,0));
+
+
 
         VBox menuVBox = new VBox(20);
         menuVBox.setPadding(new Insets(50, 0, 0, 0));
         menuVBox.setStyle("-fx-background-color: #f4f4f4;");
 
-        Label titleLabel = new Label("Gestión de Obras de Construcción");
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+
 
         Button trabajadoresButton = new Button("Trabajadores");
         trabajadoresButton.setStyle("-fx-font-size: 18px;");
@@ -56,9 +63,13 @@ public class Main extends Application {
         salirButton.setMinWidth(200);
         salirButton.setOnAction(e -> primaryStage.close());
 
-        menuVBox.getChildren().addAll(titleLabel, trabajadoresButton, materialesButton, calcularButton, salirButton);
+        menuVBox.getChildren().addAll( trabajadoresButton, materialesButton, calcularButton, salirButton);
         menuVBox.setAlignment(Pos.CENTER);
         root.setCenter(menuVBox);
+
+        tituloMenuPrincipal.getChildren().addAll(titleLabel);
+        tituloMenuPrincipal.setAlignment(Pos.TOP_CENTER);
+        root.setTop(tituloMenuPrincipal);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestión de Obras de Construcción");
