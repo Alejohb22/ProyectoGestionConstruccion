@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.Admin;
 import model.Job;
@@ -27,19 +28,27 @@ public class Main extends Application {
         admin.addJob(new Job("Electricista", 8000));
 
         BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, 800, 600);
+
+        Scene scene = new Scene(root, 900, 500);
+
+
 
         Label titleLabel = new Label("Gestión de Obras de Construcción");
-        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;");
+        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: white; -fx-font-family: Algerian");
 
         VBox tituloMenuPrincipal = new VBox(20);
-        tituloMenuPrincipal.setPadding(new Insets(50,0,0,0));
+
+        tituloMenuPrincipal.setPadding(new Insets(50, 0, 0, 0));
+        tituloMenuPrincipal.setStyle("-fx-background-color: #0a2057;");
+
+
+
 
 
 
         VBox menuVBox = new VBox(20);
         menuVBox.setPadding(new Insets(50, 0, 0, 0));
-        menuVBox.setStyle("-fx-background-color: #f4f4f4;");
+        menuVBox.setStyle("-fx-background-color: #0a2057;");
 
 
 
@@ -70,6 +79,10 @@ public class Main extends Application {
         tituloMenuPrincipal.getChildren().addAll(titleLabel);
         tituloMenuPrincipal.setAlignment(Pos.TOP_CENTER);
         root.setTop(tituloMenuPrincipal);
+
+
+
+
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestión de Obras de Construcción");
