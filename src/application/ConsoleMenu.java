@@ -127,17 +127,9 @@ public class ConsoleMenu  {
     }
 
     private void workerMenu() {
-        // Implementa el menú de trabajadores aquí
-        VBox formLayout = new VBox(10);
-        formLayout.setStyle("-fx-background-color: lightgray;");
-        Label nameLabel = new Label("Nombre:");
-        TextField nameField = new TextField();
-        Label lastNameLabel = new Label("Apellido:");
-        TextField lastNameField = new TextField();
-        Label jobLabel = new Label("Cargo:");
-        TextField jobField = new TextField();
-        Button submitButton = new Button("Crear Trabajador");
-
+        WorkerMenu workerMenu = new WorkerMenu(primaryStage, admin);
+        Scene workerScene = workerMenu.createWorkerMenu();
+        primaryStage.setScene(workerScene);
 
     }
 
