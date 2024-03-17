@@ -1,10 +1,6 @@
 package presentation;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 //import javax.swing.JOptionPane;
 
@@ -171,6 +167,7 @@ public class Console {
 						if (opsCargo > 0 && opsCargo <= admin.getListJob().size()) {
 							w.setJob(admin.getListJob().get(opsCargo - 1));
 							admin.addWorker(w);
+							System.out.println(admin.getListWorker().size());
 							break;
 						} else {
 							System.out.println("Opcion invalida,intentelo nuevamente");
@@ -294,15 +291,7 @@ public class Console {
 		}
 		Worker aux = new Worker();
 		System.out.println("La informacion de los trabajadores es: ");
-		for (int i = 0; i < (admin.getListWorker().size() - 1); i++) {
-			for (int j = 0; j < (admin.getListWorker().size() - 1); j++) {
-				if (admin.getListWorker().get(j).getName().compareTo(admin.getListWorker().get(j + 1).getName()) > 0) {
-					aux = admin.getListWorker().get(j);
-					admin.getListWorker().add(j, admin.getListWorker().get(j + 1));
-					admin.getListWorker().add(j + 1, aux);
-				}
-			}
-		}
+		Collections.sort(admin.getListWorker(), Comparator.comparing(Worker::getName));
 		for (int i = 0; i < admin.getListWorker().size(); i++) {
 			System.out.println(admin.getListWorker().get(i).getName() + " " + admin.getListWorker().get(i).getlastname()
 					+ " " + " Codigo: " + admin.getListWorker().get(i).getCode() + " " + "Cargo: "
@@ -597,6 +586,7 @@ public class Console {
 		double dayExpense = admin.calcDailyExpense();
 		//JOptionPane.showMessageDialog(null,
 				//"$" + gastoTotal + " es el gasto total de la obra generado el " + new Date());
+		System.out.println("$" + gastoTotal + " es el gasto total de la obra generado el " + new Date());
 
 	}
 }

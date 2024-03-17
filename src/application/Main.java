@@ -29,7 +29,7 @@ public class Main extends Application {
 
         BorderPane root = new BorderPane();
 
-        root.setStyle("-fx-background-color: #0a2057");//fondo
+        root.setStyle("-fx-background-color: #0a2057");
 
         Scene scene = new Scene(root, 900, 500);
 
@@ -118,6 +118,14 @@ public class Main extends Application {
 
     private void workerMenu() {
         // Implementa el menú de trabajadores aquí
+    BorderPane rootT=new BorderPane();
+    rootT.setStyle("-fx-background-color: White");
+    Scene scene1=new Scene(rootT,900,500);
+    Label titlleTra=new Label("GESTION DE TRABAJADORES");
+    titlleTra.setStyle("-fx-font-size: 50px;-fx-font-weight: bold;-fx-text-fill: white; -fx-font-family: Algerian");
+
+
+
     }
 
     private void materialMenu() {
