@@ -127,9 +127,9 @@ public class ConsoleMenu  {
     }
 
     private void workerMenu() {
-        GetInfoWorkers getInfoWorkers = new GetInfoWorkers(primaryStage, admin);
-        Scene workerScene = getInfoWorkers.createGetInfoWorkers();
-        primaryStage.setScene(workerScene);
+        WorkerMenu menu = new WorkerMenu(primaryStage, admin);
+        Scene workerMenu = menu.createWorkerMenu();
+        primaryStage.setScene(workerMenu);
 
     }
 
@@ -138,6 +138,6 @@ public class ConsoleMenu  {
     }
 
     private void calSalary() {
-        // Implementa el cálculo del precio total de la obra aquí
+
     }
 }
