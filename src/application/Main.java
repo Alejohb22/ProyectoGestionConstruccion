@@ -29,27 +29,27 @@ public class Main extends Application {
 
         BorderPane root = new BorderPane();
 
-        root.setStyle("-fx-background-color: #2F3C45");
+        root.setStyle("-fx-background-color:#2F3C45");
 
         Scene scene = new Scene(root, 900, 500);
 
         Label titleLabel = new Label("Gestión de Obras de Construcción");
-        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: white; -fx-font-family: Algerian");
+        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
 
         VBox tituloMenuPrincipal = new VBox(20);
         tituloMenuPrincipal.setPadding(new Insets(50, 0, 0, 0));
-        tituloMenuPrincipal.setStyle("-fx-background-color: #0a2057;");//color fondo titulo
+        tituloMenuPrincipal.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
 
         VBox boxCalcular = new VBox(20);
         boxCalcular.setPadding(new Insets(50));
-        boxCalcular.setStyle("-fx-background-color: #192b55; -fx-background-radius: 10;"); //color fondo botones y bordes
-        boxCalcular.setEffect(new DropShadow());
+        boxCalcular.setStyle("-fx-background-color: #2F3C45; -fx-background-radius: 10;"); //color fondo botones y bordes
+        //boxCalcular.setEffect(new DropShadow());
 
         Image imageTrabajadores = new Image(getClass().getResourceAsStream("/resources/trabajadores.gif"));
         ImageView imageViewTrabajadores = new ImageView(imageTrabajadores);
         Button trabajadoresButton = new Button("Trabajadores", imageViewTrabajadores);
-        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white; -fx-font-family: Algerian");
-        trabajadoresButton.setMinWidth(200);
+        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
+        trabajadoresButton.setMinWidth(500);
         trabajadoresButton.setAlignment(Pos.CENTER);
         trabajadoresButton.setContentDisplay(ContentDisplay.TOP);
         trabajadoresButton.setPadding(new Insets(10));
@@ -57,42 +57,47 @@ public class Main extends Application {
 
         VBox boxTrabajadores = new VBox();
         boxTrabajadores.setPadding(new Insets(50, 0, 0, 0));
-        boxTrabajadores.setStyle("-fx-background-color: #192b55; -fx-background-radius: 10;"); //color fondo botones y bordes
+        boxTrabajadores.setStyle("-fx-background-color:#2F3C45; -fx-background-radius: 10;"); //color fondo botones y bordes
         boxTrabajadores.setEffect(new DropShadow());
         boxTrabajadores.getChildren().addAll(trabajadoresButton);
         boxTrabajadores.setAlignment(Pos.CENTER_LEFT);
 
         Image imageMateriales = new Image(getClass().getResourceAsStream("/resources/gif materiales.gif"));
+
         ImageView imageViewMateriales = new ImageView(imageMateriales);
+        imageViewMateriales.setFitHeight(340);
+        imageViewMateriales.setFitWidth(290);
         Button materialesButton = new Button("Materiales", imageViewMateriales);
-        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white; -fx-font-family: Algerian");
-        materialesButton.setMinWidth(200);
+        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: white; -fx-font-family: Algerian");
+        materialesButton.setMinWidth(500);
         materialesButton.setAlignment(Pos.CENTER);
         materialesButton.setContentDisplay(ContentDisplay.TOP);
         materialesButton.setPadding(new Insets(10));
+
         materialesButton.setOnAction(e -> materialMenu());
 
         VBox boxMateriales = new VBox();
         boxMateriales.setPadding(new Insets(50, 0, 0, 0));
-        boxMateriales.setStyle("-fx-background-color: #192b55; -fx-background-radius: 10;"); //color fondo botones y bordes
+        boxMateriales.setStyle("-fx-background-color: #2F3C45; -fx-background-radius: 10;"); //color fondo botones y bordes
         boxMateriales.setEffect(new DropShadow());
         boxMateriales.getChildren().addAll(materialesButton);
         boxMateriales.setAlignment(Pos.CENTER_RIGHT);
 
         Button calcularButton = new Button("Calcular gasto del dia");
-        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;-fx-font-family: Algerian");
+        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
 
         calcularButton.setMinWidth(400);
         calcularButton.setAlignment(Pos.CENTER);
         calcularButton.setOnAction(e -> calSalary());
 
         Button salirButton = new Button("Salir");
-        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #5588ff; -fx-text-fill: white;-fx-font-family: Algerian");
+        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
         salirButton.setMinWidth(100);
         salirButton.setAlignment(Pos.CENTER);
         salirButton.setOnAction(e -> primaryStage.close());
 
         HBox bottomButtonsBox = new HBox(20);
+        bottomButtonsBox.setEffect(new DropShadow());
         bottomButtonsBox.getChildren().addAll(calcularButton, salirButton);
         bottomButtonsBox.setAlignment(Pos.CENTER);
         bottomButtonsBox.setPadding(new Insets(20));
@@ -123,7 +128,6 @@ public class Main extends Application {
     Scene scene1=new Scene(rootT,900,500);
     Label titlleTra=new Label("GESTION DE TRABAJADORES");
     titlleTra.setStyle("-fx-font-size: 50px;-fx-font-weight: bold;-fx-text-fill: white; -fx-font-family: Algerian");
-
 
 
     }
