@@ -24,9 +24,10 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
+
     }
 
-
+0.00.
     public static void main(String[] args) {
         launch(args);
     }

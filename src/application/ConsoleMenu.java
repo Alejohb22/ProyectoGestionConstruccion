@@ -33,8 +33,7 @@ public class ConsoleMenu  {
         root.setStyle("-fx-background-color:#2F3C45");
 
 
-
-        Label titleLabel = new Label("Gestión de Obras de Construcción");
+                Label titleLabel = new Label("Gestión de Obras de Construcción");
         titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
 
         VBox tituloMenuPrincipal = new VBox(20);
@@ -60,6 +59,7 @@ public class ConsoleMenu  {
         boxTrabajadores.setPadding(new Insets(50, 0, 0, 0));
         boxTrabajadores.setStyle("-fx-background-color:#2F3C45; -fx-background-radius: 10;"); //color fondo botones y bordes
         boxTrabajadores.setEffect(new DropShadow());
+
         boxTrabajadores.getChildren().addAll(trabajadoresButton);
         boxTrabajadores.setAlignment(Pos.CENTER_LEFT);
 
@@ -86,6 +86,8 @@ public class ConsoleMenu  {
 
         Button calcularButton = new Button("Calcular gasto del dia");
         calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
+
+
 
         calcularButton.setMinWidth(400);
         calcularButton.setAlignment(Pos.CENTER);
