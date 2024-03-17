@@ -21,7 +21,11 @@ public class WorkerMenu {
     public Scene createWorkerMenu() {
         BorderPane root = new BorderPane();
         VBox botones =new VBox();
-        Button botonCT=new Button()
+        Button botonCT=new Button();
+        Button botonCCarT=new Button();
+        Button botonMinft=new Button();
+        Button botonCalST=new Button();
+        Button Volver=new Button();
         submitButton.setOnAction(e -> {
             // Lógica para crear un nuevo trabajador
             // Por ahora, simplemente cerraremos la ventana
