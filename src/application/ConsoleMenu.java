@@ -127,8 +127,8 @@ public class ConsoleMenu  {
     }
 
     private void workerMenu() {
-        WorkerMenu workerMenu = new WorkerMenu(primaryStage, admin);
-        Scene workerScene = workerMenu.createWorkerMenu();
+        GetInfoWorkers getInfoWorkers = new GetInfoWorkers(primaryStage, admin);
+        Scene workerScene = getInfoWorkers.createGetInfoWorkers();
         primaryStage.setScene(workerScene);
 
     }
