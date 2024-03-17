@@ -20,21 +20,8 @@ public class WorkerMenu {
 
     public Scene createWorkerMenu() {
         BorderPane root = new BorderPane();
-        VBox workerLayout = new VBox(10);
-        workerLayout.setStyle("-fx-background-color: lightgray;");
-        Label nameLabel = new Label("Nombre:");
-        TextField nameField = new TextField();
-        Label lastNameLabel = new Label("Apellido:");
-        TextField lastNameField = new TextField();
-        Label jobLabel = new Label("Cargo:");
-        TextField jobField = new TextField();
-        Button submitButton = new Button("Crear Trabajador");
-
-        workerLayout.getChildren().addAll(nameLabel, nameField, lastNameLabel, lastNameField, jobLabel, jobField, submitButton);
-        workerLayout.setAlignment(Pos.CENTER);
-        workerLayout.setPadding(new Insets(20));
-        root.setCenter(workerLayout);
-
+        VBox botones =new VBox();
+        Button botonCT=new Button()
         submitButton.setOnAction(e -> {
             // Lógica para crear un nuevo trabajador
             // Por ahora, simplemente cerraremos la ventana
