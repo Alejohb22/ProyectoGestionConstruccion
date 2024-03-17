@@ -123,11 +123,15 @@ public class Main extends Application {
 
     private void workerMenu() {
         // Implementa el menú de trabajadores aquí
-    BorderPane rootT=new BorderPane();
-    rootT.setStyle("-fx-background-color: White");
-    Scene scene1=new Scene(rootT,900,500);
-    Label titlleTra=new Label("GESTION DE TRABAJADORES");
-    titlleTra.setStyle("-fx-font-size: 50px;-fx-font-weight: bold;-fx-text-fill: white; -fx-font-family: Algerian");
+        VBox formLayout = new VBox(10);
+        formLayout.setStyle("-fx-background-color: lightgray;");
+        Label nameLabel = new Label("Nombre:");
+        TextField nameField = new TextField();
+        Label lastNameLabel = new Label("Apellido:");
+        TextField lastNameField = new TextField();
+        Label jobLabel = new Label("Cargo:");
+        TextField jobField = new TextField();
+        Button submitButton = new Button("Crear Trabajador");
 
 
     }
