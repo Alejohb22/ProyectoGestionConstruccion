@@ -29,7 +29,7 @@ public class Main extends Application {
 
         BorderPane root = new BorderPane();
 
-        root.setStyle("-fx-background-color: #0a2057");
+        root.setStyle("-fx-background-color: #2F3C45");
 
         Scene scene = new Scene(root, 900, 500);
 
