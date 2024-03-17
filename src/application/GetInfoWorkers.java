@@ -20,6 +20,7 @@ public class GetInfoWorkers {
 
     public Scene createGetInfoWorkers() {
         BorderPane root = new BorderPane();
+        root.setStyle("-fx-background-color:#2F3C45");
         ListView<String> workerListView = new ListView<>(
                 FXCollections.observableArrayList(admin.getListWorker().stream()
                         .map(worker -> worker.getName() + " " + worker.getlastname() + " Código: " + worker.getCode() + " Cargo: " + worker.getJob().getName() + " Sueldo: " + worker.getSalary())
@@ -27,6 +28,7 @@ public class GetInfoWorkers {
         );
 
         Label warningLabel = new Label("Aún no se han creado trabajadores");
+        warningLabel.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
 
         VBox boxInfo;
 
@@ -37,6 +39,13 @@ public class GetInfoWorkers {
         }
         root.setCenter(boxInfo);
 
-        return new Scene(root, 600, 400);
+
+        Scene scene = new Scene(root, 600, 400);
+        primaryStage.setScene(scene);
+
+        // Establecer la ventana en pantalla completa
+        primaryStage.setFullScreen(true);
+
+        return scene;
     }
 }

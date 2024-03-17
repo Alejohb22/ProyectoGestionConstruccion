@@ -22,7 +22,7 @@ public class Main extends Application {
         Scene scene = consoleMenu.createMenu();
 
         primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
