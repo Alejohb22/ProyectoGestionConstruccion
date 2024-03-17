@@ -20,14 +20,10 @@ public class WorkerMenu {
 
     public Scene createWorkerMenu() {
         BorderPane root = new BorderPane();
-        VBox botones =new VBox();
-        Button botonCT=new Button()
-        submitButton.setOnAction(e -> {
-            // Lógica para crear un nuevo trabajador
-            // Por ahora, simplemente cerraremos la ventana
-            primaryStage.setScene(primaryStage.getScene()); // Volvemos al menú principal
-        });
+        VBox botones = new VBox();
+        Button botonCT = new Button();
 
-        return new Scene(root, 300, 200);
+
+         return new Scene(root, 300, 200);
     }
 }
