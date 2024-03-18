@@ -12,10 +12,12 @@ import logic.Admin;
 public class WorkerMenu {
     private Stage primaryStage;
     private Admin admin;
+    private Scene previousScene;
 
     public WorkerMenu(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
     }
 
     public Scene createWorkerMenu() {
@@ -38,10 +40,22 @@ public class WorkerMenu {
 
         VBox botones = new VBox(10);
         Button botonCT = new Button(" Crear Trabajadores");
+        botonCT.setOnAction(e -> crearTrabajadores());
+
+
         Button botonCCarT=new Button("Crear Roles para Trabajadores");
+        botonCCarT.setOnAction(e -> crearRoles());
+
         Button botonMIT=new Button("Mostrar la informacion de los trabajadores");
+        botonMIT.setOnAction(e -> obtenerInformacionTrabajadores());
+
         Button botonCSalT=new Button("Calcular salario de los trabajadores");
+        botonCSalT.setOnAction(e -> obtenerSalario());
+
+
         Button botonVolver=new Button("Volver");
+        botonVolver.setOnAction(e -> volver());
+
         botonCT.setMinWidth(170);
         botonCT.setMinHeight(120);
         botonCCarT.setMinWidth(170);
@@ -55,6 +69,50 @@ public class WorkerMenu {
         botones.getChildren().addAll(botonCT,botonCCarT,botonMIT,botonCSalT,botonVolver);
         root.setLeft(botones);
 
-         return new Scene(root, 300, 200);
+        Scene scene = new Scene(root, 1280, 720);
+        primaryStage.setScene(scene);
+        //primaryStage.setMaximized(true);
+
+
+
+        return scene;
+
+    }
+
+    private void crearTrabajadores(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+        WorkerForm workerForm = new WorkerForm(primaryStage, admin, previousScene);
+
+        Scene workerForm1m = workerForm.createWorkerForm();
+        primaryStage.setScene(workerForm1m);
+    }
+
+    private void crearRoles(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+            CreateRol crearRoles = new CreateRol(primaryStage, admin, previousScene);
+        Scene createRol = crearRoles.createFormRol();
+        primaryStage.setScene(createRol);
+    }
+
+    private void obtenerInformacionTrabajadores(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+        GetInfoWorkers obtenerInformacion = new GetInfoWorkers(primaryStage,admin, previousScene);
+        Scene getInfo = obtenerInformacion.createGetInfoWorkers();
+        primaryStage.setScene(getInfo);
+    }
+
+    private void obtenerSalario(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+        WorkerSalaryScene obtenerSalario = new WorkerSalaryScene(primaryStage,admin, previousScene);
+        Scene getSalary = obtenerSalario.createScene();
+        primaryStage.setScene(getSalary);
+
+    }
+
+    private void volver(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+        ConsoleMenu menu = new ConsoleMenu(primaryStage,admin,previousScene);
+        Scene getMenu = menu.createMenu();
+        primaryStage.setScene(getMenu);
     }
 }

@@ -17,9 +17,12 @@ public class ConsoleMenu  {
     private Stage primaryStage;
     private Admin admin;
 
-    public ConsoleMenu(Stage primaryStage, Admin admin) {
+    private Scene previousScene;
+
+    public ConsoleMenu(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
         initializeJobs();
     }
 
@@ -118,7 +121,7 @@ public class ConsoleMenu  {
         tituloMenuPrincipal.setAlignment(Pos.TOP_CENTER);
         root.setTop(tituloMenuPrincipal);
 
-        return new Scene(root, 900, 500);
+        return new Scene(root, 1280, 720);
     }
 
     private void initializeJobs() {

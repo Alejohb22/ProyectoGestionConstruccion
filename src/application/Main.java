@@ -13,16 +13,17 @@ import model.Worker;
 public class Main extends Application {
 
     private Admin admin = new Admin();
+    private Scene previousScene;
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Gestión de Obras de Construcción");
 
-        ConsoleMenu consoleMenu = new ConsoleMenu(primaryStage, admin);
+        ConsoleMenu consoleMenu = new ConsoleMenu(primaryStage, admin, previousScene);
         Scene scene = consoleMenu.createMenu();
 
         primaryStage.setScene(scene);
-        primaryStage.setFullScreen(true);
+
         primaryStage.show();
 
     }

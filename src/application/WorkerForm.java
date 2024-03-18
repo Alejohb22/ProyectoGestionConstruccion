@@ -9,17 +9,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
 
-public class WorkerForm{
+public class WorkerForm {
     private Stage primaryStage;
     private Admin admin;
+    private Scene previousScene;
 
-
-    public WorkerForm(Stage primaryStage, Admin admin) {
+    public WorkerForm(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
     }
 
-    public Scene createWorkerMenu() {
+
+    public Scene createWorkerForm() {
         BorderPane root = new BorderPane();
         VBox workerLayout = new VBox(10);
         workerLayout.setStyle("-fx-background-color: #2F3C45;");
@@ -31,11 +33,13 @@ public class WorkerForm{
         Label jobLabel = new Label("Cargo:");
         TextField jobField = new TextField();
         Button submitButton = new Button("Crear Trabajador");
+        Button backButton = new Button("Volver");
 
         workerLayout.getChildren().addAll(nameLabel, nameField, lastNameLabel, lastNameField, jobLabel, jobField, submitButton);
         workerLayout.setAlignment(Pos.CENTER);
         workerLayout.setPadding(new Insets(20));
         root.setCenter(workerLayout);
+        root.setBottom(backButton);
 
         submitButton.setOnAction(e -> {
             // Lógica para crear un nuevo trabajador
@@ -43,7 +47,10 @@ public class WorkerForm{
             primaryStage.setScene(primaryStage.getScene()); // Volvemos al menú principal
         });
 
-        return new Scene(root, 300, 200);
+        backButton.setOnAction(e -> {
+            primaryStage.setScene(previousScene); // Volvemos a la escena anterior
+        });
 
+        return new Scene(root, 1280, 720);
     }
 }

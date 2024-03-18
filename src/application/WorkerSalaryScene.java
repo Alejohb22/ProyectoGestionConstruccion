@@ -26,9 +26,12 @@ public class WorkerSalaryScene {
     private Admin admin;
     private boolean casoUno;
 
-    public WorkerSalaryScene(Stage primaryStage, Admin admin) {
+    private Scene previousScene;
+
+    public WorkerSalaryScene(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
     }
 
     public Scene createScene() {
@@ -38,7 +41,7 @@ public class WorkerSalaryScene {
         VBox boxInfo = new VBox(); // Aquí puedes agregar cualquier contenido adicional
         root.setCenter(boxInfo); // Agregar el VBox al centro del BorderPane
 
-        Button backButton = new Button("Atrás");
+        Button backButton = new Button("Volver");
         backButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
         backButton.setMinWidth(100);
 
@@ -53,14 +56,17 @@ public class WorkerSalaryScene {
             // Lógica para volver a la pantalla anterior
         });
 
+        backButton.setOnAction(e -> {
+            primaryStage.setScene(previousScene); // Volvemos a la escena anterior
+        });
+
         // Llamar al método calcWorkerSalary() para mostrar los diálogos de cálculo de salario
         calcWorkerSalary();
 
-        Scene scene = new Scene(root, 900, 500);
+        Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
 
-        // Establecer la ventana en pantalla completa
-        primaryStage.setFullScreen(true);
+
 
         return scene;
     }

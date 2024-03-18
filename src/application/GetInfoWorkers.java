@@ -18,9 +18,12 @@ public class GetInfoWorkers {
     private Stage primaryStage;
     private Admin admin;
 
-    public GetInfoWorkers(Stage primaryStage, Admin admin) {
+    private Scene previousScene;
+
+    public GetInfoWorkers(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
     }
 
     public Scene createGetInfoWorkers() {
@@ -44,26 +47,29 @@ public class GetInfoWorkers {
         }
         root.setCenter(boxInfo);
 
-        Button atrasButton = new Button("Atras");
-        atrasButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
-        atrasButton.setMinWidth(100);
-        atrasButton.setAlignment(Pos.CENTER);
+        Button backButton = new Button("Volver");
+        backButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
+        backButton.setMinWidth(100);
+        backButton.setAlignment(Pos.CENTER);
 
         HBox bottomButtonsBox = new HBox(20);
         bottomButtonsBox.setEffect(new DropShadow());
-        bottomButtonsBox.getChildren().addAll( atrasButton);
+        bottomButtonsBox.getChildren().addAll( backButton);
         bottomButtonsBox.setAlignment(Pos.CENTER);
         bottomButtonsBox.setPadding(new Insets(20));
 
         root.setBottom(bottomButtonsBox);
 
+        backButton.setOnAction(e -> {
+            primaryStage.setScene(previousScene); // Volvemos a la escena anterior
+        });
 
 
-        Scene scene = new Scene(root, 900, 500);
+
+        Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
 
-        // Establecer la ventana en pantalla completa
-        primaryStage.setFullScreen(true);
+
 
         return scene;
     }
