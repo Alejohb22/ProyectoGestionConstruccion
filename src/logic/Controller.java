@@ -62,7 +62,7 @@ public class Controller {
         System.out.println(result.size());
         for(Worker w:result){
             System.out.println(w.toString());
-            a.AgregarContenidoArchivo(w.getName()+","+w.getCode()+","+w.getlastname()+","+w.getSalary()+","+w.getJob().getName()+","+w.getJob().gethourValue());
+            a.AgregarContenidoArchivo(w.getName()+","+w.getCode()+","+w.getLastName()+","+w.getSalary()+","+w.getJob().getName()+","+w.getJob().gethourValue());
             System.out.println("añadido");
 
         }
