@@ -7,14 +7,14 @@ public class Worker {
 	private String code;
 	private int salary;
 	private Job job;
-	private String lastname;
+	private String lastName; // Cambio de 'lastname' a 'lastName'
 
-	public String getlastname() {
-		return lastname;
+	public String getLastName() { // Cambio de 'getlastname' a 'getLastName'
+		return lastName;
 	}
 
-	public void setlastname(String apellido) {
-		this.lastname = apellido;
+	public void setLastName(String apellido) { // Cambio de 'setlastname' a 'setLastName'
+		this.lastName = apellido;
 	}
 
 	public Worker() {
@@ -76,7 +76,7 @@ public class Worker {
 				", code='" + code + '\'' +
 				", salary=" + salary +
 				", job=" + job.toString() +
-				", lastname='" + lastname + '\'' +
+				", lastname='" + lastName + '\'' +
 				'}';
 	}
 }

@@ -23,7 +23,7 @@ public class ConsoleMenu  {
         this.primaryStage = primaryStage;
         this.admin = admin;
         this.previousScene = previousScene;
-        initializeJobs();
+
     }
 
 
@@ -124,12 +124,7 @@ public class ConsoleMenu  {
         return new Scene(root, 1280, 720);
     }
 
-    private void initializeJobs() {
-        admin.addJob(new Job("Jefe de obra", 12000));
-        admin.addJob(new Job("Albañil", 7500));
-        admin.addJob(new Job("Soldador", 7000));
-        admin.addJob(new Job("Electricista", 8000));
-    }
+
 
     private void workerMenu() {
         WorkerMenu menu = new WorkerMenu(primaryStage, admin);

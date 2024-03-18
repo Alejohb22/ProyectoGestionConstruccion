@@ -1,23 +1,20 @@
 package application;
 
-import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.Admin;
+import model.Worker;
 
 public class GetInfoWorkers {
     private Stage primaryStage;
     private Admin admin;
-
     private Scene previousScene;
 
     public GetInfoWorkers(Stage primaryStage, Admin admin, Scene previousScene) {
@@ -26,51 +23,55 @@ public class GetInfoWorkers {
         this.previousScene = previousScene;
     }
 
-    public Scene createGetInfoWorkers() {
-        BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color:#2F3C45");
-        ListView<String> workerListView = new ListView<>(
-                FXCollections.observableArrayList(admin.getListWorker().stream()
-                        .map(worker -> worker.getName() + " " + worker.getlastname() + " Código: " + worker.getCode() + " Cargo: " + worker.getJob().getName() + " Sueldo: " + worker.getSalary())
-                        .toList())
-        );
-
-        Label warningLabel = new Label("Aún no se han creado trabajadores");
-        warningLabel.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Sans-Serif");
-
-        VBox boxInfo;
-
+    public Scene showWorkerInfo() {
         if (admin.getListWorker().isEmpty()) {
-            boxInfo = new VBox(warningLabel);
-        } else {
-            boxInfo = new VBox(workerListView);
+            showAlert("Información", "Aún no se han creado trabajadores.");
+            return null;
         }
-        root.setCenter(boxInfo);
 
-        Button backButton = new Button("Volver");
-        backButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
-        backButton.setMinWidth(100);
-        backButton.setAlignment(Pos.CENTER);
+        VBox container = new VBox(20);
+        container.setPadding(new Insets(20));
+        container.setAlignment(Pos.CENTER);
 
-        HBox bottomButtonsBox = new HBox(20);
-        bottomButtonsBox.setEffect(new DropShadow());
-        bottomButtonsBox.getChildren().addAll( backButton);
-        bottomButtonsBox.setAlignment(Pos.CENTER);
-        bottomButtonsBox.setPadding(new Insets(20));
+        for (Worker worker : admin.getListWorker()) {
+            VBox workerInfoBox = createWorkerInfoBox(worker);
+            container.getChildren().add(workerInfoBox);
+        }
 
-        root.setBottom(bottomButtonsBox);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.rgb(240, 240, 240), CornerRadii.EMPTY, Insets.EMPTY);
+        container.setBackground(new Background(backgroundFill));
 
-        backButton.setOnAction(e -> {
-            primaryStage.setScene(previousScene); // Volvemos a la escena anterior
-        });
-
-
-
-        Scene scene = new Scene(root, 1280, 720);
-        primaryStage.setScene(scene);
-
-
-
+        Scene scene = new Scene(container, 600, 400);
         return scene;
+    }
+
+    private VBox createWorkerInfoBox(Worker worker) {
+        VBox workerInfoBox = new VBox(10);
+        workerInfoBox.setAlignment(Pos.CENTER);
+        workerInfoBox.setStyle("-fx-background-color: #FFFFFF; -fx-padding: 10px; -fx-border-color: #DDDDDD; -fx-border-width: 1px; -fx-border-radius: 5px;");
+
+        Label nameLabel = createLabel("Nombre: " + worker.getName());
+        Label lastNameLabel = createLabel("Apellido: " + worker.getLastName());
+        Label codeLabel = createLabel("Código: " + worker.getCode());
+        Label jobLabel = createLabel("Cargo: " + worker.getJob());
+        Label salaryLabel = createLabel("Sueldo: " + worker.getSalary());
+
+        workerInfoBox.getChildren().addAll(nameLabel, lastNameLabel, codeLabel, jobLabel, salaryLabel);
+        return workerInfoBox;
+    }
+
+    private Label createLabel(String text) {
+        Label label = new Label(text);
+        label.setFont(Font.font("Arial", 14));
+        label.setTextFill(Color.BLACK);
+        return label;
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

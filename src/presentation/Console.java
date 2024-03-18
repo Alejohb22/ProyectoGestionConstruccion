@@ -143,8 +143,8 @@ public class Console {
 					while (true) {
 						try {
 							System.out.println("Digite el apellido del trabajador");
-							w.setlastname(scanner.nextLine());
-							int test = Integer.parseInt(w.getlastname());
+							w.setLastName(scanner.nextLine());
+							int test = Integer.parseInt(w.getLastName());
 							System.out.println("Recuerde que los apellidos no tienen numeros");
 						} catch (Exception i) {
 							break;
@@ -297,7 +297,7 @@ public class Console {
 		System.out.println("La informacion de los trabajadores es: ");
 		Collections.sort(admin.getListWorker(), Comparator.comparing(Worker::getName));
 		for (int i = 0; i < admin.getListWorker().size(); i++) {
-			System.out.println(admin.getListWorker().get(i).getName() + " " + admin.getListWorker().get(i).getlastname()
+			System.out.println(admin.getListWorker().get(i).getName() + " " + admin.getListWorker().get(i).getLastName()
 					+ " " + " Codigo: " + admin.getListWorker().get(i).getCode() + " " + "Cargo: "
 					+ admin.getListWorker().get(i).getJob().getName() + " " + "Sueldo: "
 					+ admin.getListWorker().get(i).getSalary());

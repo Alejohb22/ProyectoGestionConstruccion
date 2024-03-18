@@ -45,10 +45,10 @@ public class MaterialsMenu {
 
 
         Button botonEM=new Button("Eliminar Materiales");
-        //botonCCarT.setOnAction(e -> crearRoles());
+        botonEM.setOnAction(e -> eliminarMateriales());
 
-        Button botonMT=new Button("Mostrar Materiales");
-        //botonMIT.setOnAction(e -> obtenerInformacionTrabajadores());
+        Button botonCPM=new Button("Calcular precio materiales");
+        botonCPM.setOnAction(e -> calcularPrecioMateriales());
 
 
 
@@ -57,14 +57,14 @@ public class MaterialsMenu {
 
         botonCM.setMinWidth(170);
         botonCM.setMinHeight(120);
-        botonMT.setMinWidth(170);
-        botonMT.setMinHeight(120);
+        botonCPM.setMinWidth(170);
+        botonCPM.setMinHeight(120);
         botonEM.setMinWidth(170);
         botonEM.setMinHeight(120);
 
         botonVolver.setMinWidth(170);
         botonVolver.setMinHeight(120);
-        botones.getChildren().addAll(botonCM,botonMT,botonEM,botonVolver);
+        botones.getChildren().addAll(botonCM,botonCPM,botonEM,botonVolver);
         root.setLeft(botones);
 
         Scene scene = new Scene(root, 1280, 720);
@@ -81,5 +81,19 @@ public class MaterialsMenu {
         ConsoleMenu menu = new ConsoleMenu(primaryStage,admin,previousScene);
         Scene getMenu = menu.createMenu();
         primaryStage.setScene(getMenu);
+    }
+
+    private void calcularPrecioMateriales(){
+        CalculatePriceMenu calculatePriceMenu = new CalculatePriceMenu(primaryStage, admin, primaryStage.getScene());
+        Scene calculatePriceScene = calculatePriceMenu.createCalculatePriceMenu();
+        primaryStage.setScene(calculatePriceScene);
+
+    }
+
+    private void eliminarMateriales(){
+        DeleteMaterialsMenu deleteMaterialsMenu = new DeleteMaterialsMenu(primaryStage, admin, primaryStage.getScene());
+        Scene deleteMaterial = deleteMaterialsMenu.createDeleteMaterialsMenu();
+        primaryStage.setScene(deleteMaterial);
+
     }
 }

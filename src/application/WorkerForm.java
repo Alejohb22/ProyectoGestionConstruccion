@@ -1,18 +1,26 @@
 package application;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import model.Job;
+import model.Worker;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class WorkerForm {
     private Stage primaryStage;
     private Admin admin;
-    private Scene previousScene;// variable para devolver escena
+    private Scene previousScene;
 
     public WorkerForm(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
@@ -20,37 +28,75 @@ public class WorkerForm {
         this.previousScene = previousScene;
     }
 
-
-    public Scene createWorkerForm() {
+    public Scene createCreateWorkerMenu() {
         BorderPane root = new BorderPane();
-        VBox workerLayout = new VBox(10);
-        workerLayout.setStyle("-fx-background-color: #2F3C45;");
-        Label nameLabel = new Label("Nombre:");
-        nameLabel.setStyle("-fx-text-fill: white");
+        root.setStyle("-fx-background-color: #2F3C45");
+
+        VBox titleBox = new VBox(20);
+        titleBox.setPadding(new Insets(50, 0, 0, 0));
+        titleBox.setStyle("-fx-background-color: #2F3C45;");
+        Label titleLabel = new Label("CREAR TRABAJADOR");
+        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
+        root.setTop(titleBox);
+        titleBox.getChildren().addAll(titleLabel);
+
+        VBox contentBox = new VBox(10);
         TextField nameField = new TextField();
-        Label lastNameLabel = new Label("Apellido:");
+        nameField.setPromptText("Nombre del trabajador");
+
         TextField lastNameField = new TextField();
-        Label jobLabel = new Label("Cargo:");
-        TextField jobField = new TextField();
-        Button submitButton = new Button("Crear Trabajador");
+        lastNameField.setPromptText("Apellido del trabajador");
+
+        ComboBox<Job> jobComboBox = new ComboBox<>();
+        ObservableList<Job> jobOptions = FXCollections.observableArrayList(
+                new Job("Manager", 100),
+                new Job("Developer", 80),
+                new Job("Designer", 70),
+                new Job("Salesperson", 60),
+                new Job("Other", 50));
+        jobComboBox.setItems(jobOptions);
+        jobComboBox.setPromptText("Seleccionar cargo");
+
+        Button createButton = new Button("Crear");
+        createButton.setOnAction(e -> createNewWorker(nameField.getText(), lastNameField.getText(), jobComboBox.getValue()));
+
         Button backButton = new Button("Volver");
+        backButton.setOnAction(e -> goBack());
 
-        workerLayout.getChildren().addAll(nameLabel, nameField, lastNameLabel, lastNameField, jobLabel, jobField, submitButton);
-        workerLayout.setAlignment(Pos.CENTER);
-        workerLayout.setPadding(new Insets(20));
-        root.setCenter(workerLayout);
-        root.setBottom(backButton);
+        contentBox.getChildren().addAll(nameField, lastNameField, jobComboBox, createButton, backButton);
+        root.setCenter(contentBox);
 
-        submitButton.setOnAction(e -> {
-            // Lógica para crear un nuevo trabajador
-            // Por ahora, simplemente cerraremos la ventana
-            primaryStage.setScene(primaryStage.getScene()); // Volvemos al menú principal
-        });
+        Scene scene = new Scene(root, 1280, 720);
+        primaryStage.setScene(scene);
+        return scene;
+    }
 
-        backButton.setOnAction(e -> {
-            primaryStage.setScene(previousScene); // Volvemos a la escena anterior
-        });
+    private void createNewWorker(String name, String lastName, Job job) {
+        if (name.isEmpty() || lastName.isEmpty() || job == null) {
+            showAlert("Error", "Por favor, complete todos los campos.");
+        } else {
+            try {
+                Worker worker = new Worker();
+                worker.setName(name);
+                worker.setLastName(lastName);
+                worker.setJob(job);
+                admin.addWorker(worker);
+                showAlert("Éxito", "Trabajador creado exitosamente.");
+            } catch (Exception e) {
+                showAlert("Error", "No se pudo crear el trabajador.");
+            }
+        }
+    }
 
-        return new Scene(root, 1280, 720);
+    private void goBack() {
+        primaryStage.setScene(previousScene);
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

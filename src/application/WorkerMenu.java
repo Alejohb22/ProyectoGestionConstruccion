@@ -83,7 +83,7 @@ public class WorkerMenu {
         Scene previousScene = primaryStage.getScene(); // Store the current scene
         WorkerForm workerForm = new WorkerForm(primaryStage, admin, previousScene);
 
-        Scene workerForm1m = workerForm.createWorkerForm();
+        Scene workerForm1m = workerForm.createCreateWorkerMenu();
         primaryStage.setScene(workerForm1m);
     }
 
@@ -94,11 +94,11 @@ public class WorkerMenu {
         primaryStage.setScene(createRol);
     }
 
-    private void obtenerInformacionTrabajadores(){
-        Scene previousScene = primaryStage.getScene(); // Store the current scene
-        GetInfoWorkers obtenerInformacion = new GetInfoWorkers(primaryStage,admin, previousScene);
-        Scene getInfo = obtenerInformacion.createGetInfoWorkers();
+    private void obtenerInformacionTrabajadores() {
+        GetInfoWorkers obtenerInformacion = new GetInfoWorkers(primaryStage, admin, primaryStage.getScene());
+        Scene getInfo = obtenerInformacion.showWorkerInfo();
         primaryStage.setScene(getInfo);
+        primaryStage.show(); // Asegúrate de llamar a show() después de cambiar la escena
     }
 
     private void obtenerSalario(){
