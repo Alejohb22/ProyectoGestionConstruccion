@@ -60,7 +60,6 @@ public class Worker {
 	}
 
 	public int getSalary() {
-		CalcularSalary(this.job.gethourValue());
 		return salary;
 	}
 
