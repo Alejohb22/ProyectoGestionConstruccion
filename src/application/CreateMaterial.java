@@ -1,7 +1,7 @@
 package application;
 
 
-
+import javax.swing.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,6 +24,8 @@ public class CreateMaterial {
         this.previousScene = previousScene;
     }
     public Scene createMaterialForm() {
+
+
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #2F3C45");
 
@@ -52,7 +54,40 @@ public class CreateMaterial {
         TextField quantityField = new TextField();
 
         Button btnAgregar = new Button("Agregar");
+        btnAgregar.setOnAction(e -> {
+            String nombreMaterial = nameField.getText();
+            String unidadMaterial = unitField.getText();
+            String precioUnitario = priceField.getText();
+            String cantidad = quantityField.getText();
+            if (nombreMaterial.isEmpty() || unidadMaterial.isEmpty() || precioUnitario.isEmpty() || cantidad.isEmpty()) {
+                // Aquí puedes mostrar un mensaje de error
+                System.out.println("Por favor, llena todos los campos.");
+                JOptionPane.showMessageDialog(null,"Antes de agregar debe rellenar todos los campos.");
+            } else {
+                // Aquí puedes proceder con la operación de agregar el material
 
+                int agregar = 0;
+
+                try {
+                    Double.parseDouble(precioUnitario);
+                    agregar =+ 1;
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null,"El precio no debe contener String ni carácteres especiales");
+                }
+
+                try {
+                    Integer.parseInt(cantidad);
+                    agregar =+ 1;
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null,"La cantidad no debe contener String ni carácteres especiales, debe ser un número entero");
+                }
+
+                if(agregar == 2) {
+
+                }
+            }
+
+        });
 
         Button btnVolver = new Button("<-- Volver");
         btnVolver.setPrefHeight(100);
@@ -65,6 +100,7 @@ public class CreateMaterial {
         root.setBottom(btnVolver); // Agrega el botón al BorderPane
         BorderPane.setAlignment(btnVolver, Pos.BOTTOM_LEFT); // Alinea el botón a la izquierda
         BorderPane.setMargin(btnVolver, new Insets(0, 0, 50, 50)); // Agrega un margen inferior de 30px
+
 
 
         Scene scene = new Scene(root, 1280, 720);
