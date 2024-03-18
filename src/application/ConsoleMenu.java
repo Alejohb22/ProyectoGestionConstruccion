@@ -17,7 +17,7 @@ public class ConsoleMenu  {
     private Stage primaryStage;
     private Admin admin;
 
-    private Scene previousScene;
+    private Scene previousScene; //variable para devolver escena
 
     public ConsoleMenu(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;

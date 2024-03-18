@@ -12,7 +12,7 @@ import logic.Admin;
 public class WorkerForm {
     private Stage primaryStage;
     private Admin admin;
-    private Scene previousScene;
+    private Scene previousScene;// variable para devolver escena
 
     public WorkerForm(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;

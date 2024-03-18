@@ -13,7 +13,7 @@ import model.Worker;
 public class Main extends Application {
 
     private Admin admin = new Admin();
-    private Scene previousScene;
+    private Scene previousScene; // variable para devolver la escena
 
     @Override
     public void start(Stage primaryStage) {

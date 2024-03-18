@@ -26,7 +26,7 @@ public class WorkerSalaryScene {
     private Admin admin;
     private boolean casoUno;
 
-    private Scene previousScene;
+    private Scene previousScene;//variable devolver escena
 
     public WorkerSalaryScene(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
