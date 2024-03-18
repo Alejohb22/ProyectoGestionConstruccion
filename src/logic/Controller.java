@@ -23,52 +23,38 @@ public class Controller {
         return result;
     }
 
-    public void setResult(ArrayList<Worker> result) {
-        this.result = result;
-    }
+
 
     public Worker addWorker(Worker worker){
-        loadWorker();
-        System.out.println("aaaaa");
-        if(result.size()==0){
-            System.out.println("aaaaa");
-            try (PrintWriter out = new PrintWriter(new FileWriter("./resources/archive.json"))) {
-                String jsonString = "[\n";
-                System.out.println(result.size());
+        Gson gson = new Gson();
+
+            loadWorker();
+            result.add(worker);
+            try (PrintWriter out = new PrintWriter(new FileWriter("./Resources/archive.json"))) {
+                String jsonString = "[";
+                int count = 1;
                 for(Worker w:result){
-                    jsonString += w.toString();
+                    if(count == result.size()){
+                        jsonString += gson.toJson(w);
+                    }else{
+                        jsonString += gson.toJson(w)+",";
+                    }
+                    count++;
                 }
-                jsonString+= worker.toString()+"\n]";
-
+                jsonString +="]";
                 out.write(jsonString);
-                System.out.println(jsonString);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
-            try (PrintWriter out = new PrintWriter(new FileWriter("./resources/archive.json"))) {
-                String jsonString = "[\n";
-                jsonString+= worker.toString()+"\n]";
-
-                out.write(jsonString);
-                System.out.println(jsonString);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
 
         return worker;
     }
-    public List<Worker> loadWorker(){
+    public void loadWorker(){
         Gson gson = new Gson();
-
-
         String content = readFile();
         Type type = new TypeToken<List<Worker>>(){}.getType();
         result = gson.fromJson(content,type);
-
-        return result;
     }
 
     public void createTextPlain(){
@@ -85,7 +71,7 @@ public class Controller {
     public String readFile(){
         try {
             BufferedReader input = new BufferedReader(
-                    new InputStreamReader(this.getClass().getResourceAsStream("./resources/archive.json"), Charset.defaultCharset()));{
+                    new InputStreamReader(this.getClass().getResourceAsStream("/Resources/archive.json"), Charset.defaultCharset()));{
                 String line = null;
                 StringBuilder output = new StringBuilder();
                 while((line = input.readLine()) != null){

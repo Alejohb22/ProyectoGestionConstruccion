@@ -168,9 +168,10 @@ public class Console {
 						int opsCargo = scanner.nextInt();
 						if (opsCargo > 0 && opsCargo <= admin.getListJob().size()) {
 							w.setJob(admin.getListJob().get(opsCargo - 1));
+							w.setSalary(0);
 							admin.addWorker(w);
 							Controller c = new Controller();
-							System.out.println(c.addWorker(w).toString());
+							c.addWorker(w);
 
 
 							break;
