@@ -164,22 +164,16 @@ public class Console {
 						for (int i = 0; i < admin.getListJob().size(); i++) {
 							System.out.println((i + 1) + " " + admin.getListJob().get(i).getName());
 						}
-						int op = scanner.nextInt();
-						if (op > 0){
-
-							int jobs = admin.getListJob().size();
-							if(op <= jobs) {
-
-								w.setJob(admin.getListJob().get(op - 1));
-								System.out.println(admin.getListJob().size()+"-"+op);
-								admin.addWorker(w);
-								System.out.println(admin.getListJob().size()+"-"+op);
-								Controller c = new Controller();
-								System.out.println(c.addWorker(w).toString());
+						//Sisaaa
+						int opsCargo = scanner.nextInt();
+						if (opsCargo > 0 && opsCargo <= admin.getListJob().size()) {
+							w.setJob(admin.getListJob().get(opsCargo - 1));
+							admin.addWorker(w);
+							Controller c = new Controller();
+							System.out.println(c.addWorker(w).toString());
 
 
-								break;
-						}
+							break;
 						} else {
 							System.out.println("Opcion invalida,intentelo nuevamente");
 						}
