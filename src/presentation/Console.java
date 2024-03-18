@@ -5,6 +5,7 @@ import java.util.*;
 //import javax.swing.JOptionPane;
 
 import logic.Admin;
+import logic.Controller;
 import logic.Utilidades;
 import model.Job;
 import model.Material;
@@ -167,9 +168,10 @@ public class Console {
 						int opsCargo = scanner.nextInt();
 						if (opsCargo > 0 && opsCargo <= admin.getListJob().size()) {
 							w.setJob(admin.getListJob().get(opsCargo - 1));
+							w.setSalary(0);
 							admin.addWorker(w);
-							//Controller c = new Controller();
-							//System.out.println(c.addWorker(w).toString());
+							Controller c = new Controller();
+							c.addWorker(w);
 
 
 							break;
