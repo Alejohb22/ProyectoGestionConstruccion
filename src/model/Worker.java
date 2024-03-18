@@ -7,7 +7,6 @@ public class Worker {
 	private String code;
 	private int salary;
 	private Job job;
-	private String mail;
 	private String lastname;
 
 	public String getlastname() {
@@ -61,6 +60,7 @@ public class Worker {
 	}
 
 	public int getSalary() {
+		CalcularSalary(this.job.gethourValue());
 		return salary;
 	}
 
@@ -68,12 +68,15 @@ public class Worker {
 		salary = sueldo;
 	}
 
-	public String getMail() {
-		return mail;
-	}
 
-	public void setMail(String correo) {
-		this.mail = correo;
+	@Override
+	public String toString() {
+		return "Worker{" +
+				"name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", salary=" + salary +
+				", job=" + job.toString() +
+				", lastname='" + lastname + '\'' +
+				'}';
 	}
-
 }

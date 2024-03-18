@@ -34,4 +34,11 @@ public class Job {
 	public void valorxHora(int tiempo) {
 	}
 
+	@Override
+	public String toString() {
+		return "Job{" +
+				"name='" + name + '\'' +
+				", hourValue=" + hourValue +
+				'}';
+	}
 }
