@@ -94,7 +94,7 @@ public class ConsoleMenu  {
 
         calcularButton.setMinWidth(400);
         calcularButton.setAlignment(Pos.CENTER);
-        calcularButton.setOnAction(e -> calSalary());
+        //calcularButton.setOnAction(e -> calSalary());
 
         Button salirButton = new Button("Salir");
         salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: sans-serif");
@@ -139,10 +139,9 @@ public class ConsoleMenu  {
     }
 
     private void materialMenu() {
-        // Implementa el menú de materiales aquí
-    }
+        MaterialsMenu menuMateriales = new MaterialsMenu(primaryStage, admin);
+        Scene materialsMenu = menuMateriales.createWorkerMenu();
+        primaryStage.setScene(materialsMenu);
 
-    private void calSalary() {
 
-    }
-}
+}}

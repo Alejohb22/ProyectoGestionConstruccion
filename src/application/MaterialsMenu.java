@@ -13,10 +13,12 @@ import logic.Admin;
 public class MaterialsMenu {
     private Stage primaryStage;
     private Admin admin;
+    private Scene previousScene;
 
     public MaterialsMenu(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
         this.admin = admin;
+        this.previousScene = previousScene;
     }
 
     public Scene createWorkerMenu() {
@@ -32,34 +34,52 @@ public class MaterialsMenu {
         VBox tituloMenuPrincipalMenutrab = new VBox(20);
         tituloMenuPrincipalMenutrab.setPadding(new Insets(50, 0, 0, 0));
         tituloMenuPrincipalMenutrab.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
-        Label TittleWorkers=new Label("MENU TRABAJADORES");
-        TittleWorkers.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
+        Label TittleMaterials=new Label("MENU MATERIALES");
+        TittleMaterials.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
         root.setTop(tituloMenuPrincipalMenutrab);
-        tituloMenuPrincipalMenutrab.getChildren().addAll(TittleWorkers);
+        tituloMenuPrincipalMenutrab.getChildren().addAll(TittleMaterials);
 
         VBox botones = new VBox(10);
-        Button botonCT = new Button(" Crear Trabajadores");
-        Button botonCCarT=new Button("Crear Roles para Trabajadores");
-        Button botonMIT=new Button("Mostrar la informacion de los trabajadores");
-        Button botonCSalT=new Button("Calcular salario de los trabajadores");
+        Button botonCM = new Button(" Crear Materiales");
+       // botonCT.setOnAction(e -> crearTrabajadores());
+
+
+        Button botonEM=new Button("Eliminar Materiales");
+        //botonCCarT.setOnAction(e -> crearRoles());
+
+        Button botonMT=new Button("Mostrar Materiales");
+        //botonMIT.setOnAction(e -> obtenerInformacionTrabajadores());
+
+
+
         Button botonVolver=new Button("Volver");
-        botonCT.setMinWidth(170);
-        botonCT.setMinHeight(120);
-        botonCCarT.setMinWidth(170);
-        botonCCarT.setMinHeight(120);
-        botonMIT.setMinWidth(170);
-        botonMIT.setMinHeight(120);
-        botonCSalT.setMinWidth(170);
-        botonCSalT.setMinHeight(120);
+        botonVolver.setOnAction(e -> volver());
+
+        botonCM.setMinWidth(170);
+        botonCM.setMinHeight(120);
+        botonMT.setMinWidth(170);
+        botonMT.setMinHeight(120);
+        botonEM.setMinWidth(170);
+        botonEM.setMinHeight(120);
+
         botonVolver.setMinWidth(170);
         botonVolver.setMinHeight(120);
-        botones.getChildren().addAll(botonCT,botonCCarT,botonMIT,botonCSalT,botonVolver);
-
+        botones.getChildren().addAll(botonCM,botonMT,botonEM,botonVolver);
         root.setLeft(botones);
 
+        Scene scene = new Scene(root, 1280, 720);
+        primaryStage.setScene(scene);
+        //primaryStage.setMaximized(true);
 
-        return new Scene(root, 300, 200);
 
 
+        return scene;
+    }
+
+    private void volver(){
+        Scene previousScene = primaryStage.getScene(); // Store the current scene
+        ConsoleMenu menu = new ConsoleMenu(primaryStage,admin,previousScene);
+        Scene getMenu = menu.createMenu();
+        primaryStage.setScene(getMenu);
     }
 }
