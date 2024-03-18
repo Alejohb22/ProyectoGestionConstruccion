@@ -31,7 +31,7 @@ public class ConsoleMenu  {
     public Scene createMenu() {
 
 
-        BorderPane root = new BorderPane();
+        BorderPane root = new BorderPane();//border
 
         root.setStyle("-fx-background-color:#2F3C45");
 
