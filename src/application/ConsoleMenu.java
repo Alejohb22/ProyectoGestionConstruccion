@@ -34,7 +34,7 @@ public class ConsoleMenu  {
 
 
                 Label titleLabel = new Label("Gestión de Obras de Construcción");
-        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
+        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: sans-serif");
 
         VBox tituloMenuPrincipal = new VBox(20);
         tituloMenuPrincipal.setPadding(new Insets(50, 0, 0, 0));
@@ -48,7 +48,7 @@ public class ConsoleMenu  {
         Image imageTrabajadores = new Image(getClass().getResourceAsStream("/resources/trabajadores.gif"));
         ImageView imageViewTrabajadores = new ImageView(imageTrabajadores);
         Button trabajadoresButton = new Button("Trabajadores", imageViewTrabajadores);
-        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
+        trabajadoresButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: #CAD2C5; -fx-font-family: sans-serif");
         trabajadoresButton.setMinWidth(500);
         trabajadoresButton.setAlignment(Pos.CENTER);
         trabajadoresButton.setContentDisplay(ContentDisplay.TOP);
@@ -69,7 +69,7 @@ public class ConsoleMenu  {
         imageViewMateriales.setFitHeight(340);
         imageViewMateriales.setFitWidth(290);
         Button materialesButton = new Button("Materiales", imageViewMateriales);
-        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: white; -fx-font-family: Algerian");
+        materialesButton.setStyle("-fx-font-size: 18px; -fx-background-color: #2F3C45; -fx-text-fill: white; -fx-font-family: sans-serif");
         materialesButton.setMinWidth(500);
         materialesButton.setAlignment(Pos.CENTER);
         materialesButton.setContentDisplay(ContentDisplay.TOP);
@@ -85,7 +85,7 @@ public class ConsoleMenu  {
         boxMateriales.setAlignment(Pos.CENTER_RIGHT);
 
         Button calcularButton = new Button("Calcular gasto del dia");
-        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
+        calcularButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: sans-serif");
 
 
 
@@ -94,7 +94,7 @@ public class ConsoleMenu  {
         calcularButton.setOnAction(e -> calSalary());
 
         Button salirButton = new Button("Salir");
-        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: Algerian");
+        salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: sans-serif");
         salirButton.setMinWidth(100);
         salirButton.setAlignment(Pos.CENTER);
         salirButton.setOnAction(e -> primaryStage.close());

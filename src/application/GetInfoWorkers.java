@@ -33,7 +33,7 @@ public class GetInfoWorkers {
         );
 
         Label warningLabel = new Label("Aún no se han creado trabajadores");
-        warningLabel.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian");
+        warningLabel.setStyle("-fx-font-size: 25px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Sans-Serif");
 
         VBox boxInfo;
 

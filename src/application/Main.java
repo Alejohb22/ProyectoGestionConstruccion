@@ -27,7 +27,7 @@ public class Main extends Application {
 
     }
 
-0.00.
+
     public static void main(String[] args) {
         launch(args);
     }

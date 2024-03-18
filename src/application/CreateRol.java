@@ -3,18 +3,20 @@ package application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
 
-public class WorkerForm{
+public class CreateRol {
     private Stage primaryStage;
     private Admin admin;
 
 
-    public WorkerForm(Stage primaryStage, Admin admin) {
+    public CreateRol(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
         this.admin = admin;
     }
@@ -23,10 +25,10 @@ public class WorkerForm{
         BorderPane root = new BorderPane();
         VBox workerLayout = new VBox(10);
         workerLayout.setStyle("-fx-background-color: #2F3C45;");
-        Label nameLabel = new Label("Nombre:");
+        Label nameLabel = new Label("Digite el nombre del rol:");
         nameLabel.setStyle("-fx-text-fill: white");
         TextField nameField = new TextField();
-        Label lastNameLabel = new Label("Apellido:");
+        Label lastNameLabel = new Label("Digite el precio:");
         TextField lastNameField = new TextField();
         Label jobLabel = new Label("Cargo:");
         TextField jobField = new TextField();
@@ -44,6 +46,7 @@ public class WorkerForm{
         });
 
         return new Scene(root, 300, 200);
+
 
     }
 }
