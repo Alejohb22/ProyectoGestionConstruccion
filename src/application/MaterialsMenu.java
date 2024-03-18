@@ -42,7 +42,7 @@ public class MaterialsMenu {
         VBox botones = new VBox(10);
         Button botonCM = new Button(" Crear Materiales");
        // botonCT.setOnAction(e -> crearTrabajadores());
-
+        botonCM.setOnAction(e -> crearMaterial());
 
         Button botonEM=new Button("Eliminar Materiales");
         botonEM.setOnAction(e -> eliminarMateriales());
@@ -54,6 +54,7 @@ public class MaterialsMenu {
 
         Button botonVolver=new Button("Volver");
         botonVolver.setOnAction(e -> volver());
+
 
         botonCM.setMinWidth(170);
         botonCM.setMinHeight(120);
@@ -74,6 +75,12 @@ public class MaterialsMenu {
 
 
         return scene;
+    }
+
+    private void crearMaterial() {
+        CreateMaterial  createMaterial = new CreateMaterial(primaryStage,admin,previousScene);
+        Scene getMenu = createMaterial.createMaterialForm();
+        primaryStage.setScene(getMenu);
     }
 
     private void volver(){

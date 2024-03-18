@@ -67,7 +67,7 @@ public class CreateMaterial {
         BorderPane.setMargin(btnVolver, new Insets(0, 0, 50, 50)); // Agrega un margen inferior de 30px
 
 
-        Scene scene = new Scene(root, 800, 720);
+        Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
         return scene; // Retorna la escena que ya ha sido establecida en primaryStage
     }
