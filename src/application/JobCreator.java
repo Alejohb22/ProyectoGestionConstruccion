@@ -35,6 +35,8 @@ public class JobCreator {
         titleLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: white;");
 
         Label infoLabel = new Label("Recuerde que ya existen 4 cargos predeterminados");
+        infoLabel.setStyle("-fx-font-size: 10px; -fx-text-fill: white");
+
 
         TextField nameField = new TextField();
         nameField.setPromptText("Digite el nombre del cargo");
@@ -57,7 +59,7 @@ public class JobCreator {
 
         root.getChildren().addAll(titleLabel, infoLabel, nameField, hourValueField, createButton, backButton);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 1280, 720);
         return scene;
     }
 
@@ -66,6 +68,10 @@ public class JobCreator {
             showAlert("Error", "Por favor, complete todos los campos.");
         } else {
             try {
+                if (hourValue < 4833) {
+                    throw new IllegalArgumentException("El valor por hora no puede ser menor a $4833.");
+                }
+
                 Job job = new Job(name, hourValue);
                 admin.addJob(job);
                 showAlert("Información", "Nuevo trabajo creado correctamente.");
@@ -73,10 +79,11 @@ public class JobCreator {
                 // Agregar el nuevo trabajo al ComboBox en WorkerForm
                 workerForm.addJobToComboBox(job);
             } catch (Exception e) {
-                System.out.println(e.getMessage().toString());
+                showAlert("Error", e.getMessage());
             }
         }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

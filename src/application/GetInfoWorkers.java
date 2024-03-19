@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -38,7 +39,6 @@ public class GetInfoWorkers {
         VBox container = new VBox(20);
         container.setPadding(new Insets(20));
         container.setAlignment(Pos.CENTER);
-        System.out.println(controller.getResult());
         for (Worker worker : controller.getResult()) {
             VBox workerInfoBox = createWorkerInfoBox(worker);
             container.getChildren().add(workerInfoBox);
@@ -47,14 +47,19 @@ public class GetInfoWorkers {
         BackgroundFill backgroundFill = new BackgroundFill(Color.rgb(240, 240, 240), CornerRadii.EMPTY, Insets.EMPTY);
         container.setBackground(new Background(backgroundFill));
 
+        // Añadir el contenedor al ScrollPane
+        ScrollPane scrollPane = new ScrollPane(container);
+        scrollPane.setFitToWidth(true);
+
         Button backButton = new Button("Volver");
         backButton.setOnAction(e -> {
             primaryStage.setScene(previousScene); // Volver a la escena anterior
         });
 
-        container.getChildren().add(backButton);
+        VBox root = new VBox(scrollPane, backButton);
+        root.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(container, 600, 400);
+        Scene scene = new Scene(root, 600, 400);
         return scene;
     }
 
