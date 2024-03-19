@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.Admin;
 import logic.Controller;
@@ -34,26 +36,32 @@ public class DeleteMaterialsMenu {
         titleBox.setPadding(new Insets(50, 0, 0, 0));
         titleBox.setStyle("-fx-background-color: #2F3C45;");
         Label titleLabel = new Label("ELIMINAR MATERIALES");
-        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
-        root.setTop(titleBox);
+        titleLabel.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #CAD2C5;  -fx-alignment: center");
         titleBox.getChildren().addAll(titleLabel);
+        root.setTop(titleBox);
 
         VBox contentBox = new VBox(10);
+        contentBox.setPadding(new Insets(20));
+        contentBox.setStyle("-fx-background-color: #2F3C45;");
+
+        // Aquí cargamos los materiales y los mostramos en la lista
         controller.loadMaterial();
         for (Material m : controller.getResultMaterial()) {
-            Label materialLabel = new Label(m.getId() + " " + m.getName() + " "
-                    + m.getAmount() + " "
-                    + m.getUnidadMedida() + " $"
-                    + m.getPrecioTotal());
-            materialLabel.setStyle("-fx-text-fill: white;");
+            Label materialLabel = new Label(m.getId() + " " + m.getName() + " " + m.getAmount() + " " + m.getUnidadMedida() + " $" + m.getPrecioTotal());
+            materialLabel.setStyle("-fx-text-fill: white; -fx-font-size: 16px;");
             contentBox.getChildren().add(materialLabel);
         }
+
         TextField materialIdField = new TextField();
         materialIdField.setPromptText("Ingrese el ID del material a eliminar");
+        materialIdField.setStyle("-fx-prompt-text-fill: #95A5A6;");
+
         Button deleteButton = new Button("Eliminar");
+        deleteButton.setStyle("-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-font-size: 16px;");
         deleteButton.setOnAction(e -> deleteMaterial(materialIdField.getText()));
 
         Button backButton = new Button("Volver");
+        backButton.setStyle("-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 16px;");
         backButton.setOnAction(e -> goBack());
 
         contentBox.getChildren().addAll(materialIdField, deleteButton, backButton);
