@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
 import model.Job;
 import model.Worker;
 
@@ -21,12 +22,20 @@ public class WorkerForm {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
+    private ObservableList<Job> jobOptions;
+    private ComboBox<Job> jobComboBox;
+    private Controller controller;
+
 
     public WorkerForm(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
         this.previousScene = previousScene;
+        controller = new Controller();
+        controller.loadRol();
+        jobOptions = FXCollections.observableArrayList(controller.getResultJob());
     }
+
 
     public Scene createCreateWorkerMenu() {
         BorderPane root = new BorderPane();
@@ -47,28 +56,28 @@ public class WorkerForm {
         TextField lastNameField = new TextField();
         lastNameField.setPromptText("Apellido del trabajador");
 
-        ComboBox<Job> jobComboBox = new ComboBox<>();
-        ObservableList<Job> jobOptions = FXCollections.observableArrayList(
-                new Job("Manager", 100),
-                new Job("Developer", 80),
-                new Job("Designer", 70),
-                new Job("Salesperson", 60),
-                new Job("Other", 50));
+        jobComboBox = new ComboBox<>();
         jobComboBox.setItems(jobOptions);
         jobComboBox.setPromptText("Seleccionar cargo");
 
         Button createButton = new Button("Crear");
-        createButton.setOnAction(e -> createNewWorker(nameField.getText(), lastNameField.getText(), jobComboBox.getValue()));
-
         Button backButton = new Button("Volver");
-        backButton.setOnAction(e -> goBack());
 
         contentBox.getChildren().addAll(nameField, lastNameField, jobComboBox, createButton, backButton);
         root.setCenter(contentBox);
 
+        createButton.setOnAction(e -> createNewWorker(nameField.getText(), lastNameField.getText(), jobComboBox.getValue()));
+
+        backButton.setOnAction(e -> goBack());
+
         Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
         return scene;
+    }
+
+    public void addJobToComboBox(Job job) {
+        controller.addJob(job);
+        jobOptions=FXCollections.observableArrayList(controller.getResultJob());
     }
 
     private void createNewWorker(String name, String lastName, Job job) {
@@ -80,8 +89,9 @@ public class WorkerForm {
                 worker.setName(name);
                 worker.setLastName(lastName);
                 worker.setJob(job);
-                admin.addWorker(worker);
+                controller.addWorker(worker);
                 showAlert("Éxito", "Trabajador creado exitosamente.");
+
             } catch (Exception e) {
                 showAlert("Error", "No se pudo crear el trabajador.");
             }

@@ -92,8 +92,8 @@ public class WorkerMenu {
 
     private void crearRoles(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        CreateRol crearRoles = new CreateRol(primaryStage, admin, previousScene);
-        Scene createRol = crearRoles.createFormRol();
+        JobCreator crearRoles = new JobCreator(primaryStage, admin, previousScene);
+        Scene createRol = crearRoles.createJobScene();
         primaryStage.setScene(createRol);
     }
 
@@ -106,8 +106,8 @@ public class WorkerMenu {
 
     private void obtenerSalario(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        WorkerSalaryScene obtenerSalario = new WorkerSalaryScene(primaryStage,admin, previousScene);
-        Scene getSalary = obtenerSalario.createScene();
+        WorkerSalaryCalculator obtenerSalario = new WorkerSalaryCalculator(primaryStage,admin, previousScene);
+        Scene getSalary = obtenerSalario.createSalaryCalculatorScene();
         primaryStage.setScene(getSalary);
 
     }
