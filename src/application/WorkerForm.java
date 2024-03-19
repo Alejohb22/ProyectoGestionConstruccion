@@ -41,7 +41,7 @@ public class WorkerForm {
 
     public Scene createCreateWorkerMenu() {
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: #34495E;");
+        root.setStyle("-fx-background-color: #2F3C45;");
 
         VBox titleBox = new VBox(20);
         titleBox.setPadding(new Insets(50, 0, 0, 0));

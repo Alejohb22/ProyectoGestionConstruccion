@@ -26,42 +26,45 @@ public class JobCreator {
     }
 
     public Scene createJobScene() {
-        VBox root = new VBox(10);
+        VBox root = new VBox(20);
         root.setStyle("-fx-background-color: #2F3C45;");
         root.setAlignment(Pos.CENTER);
-        root.setPadding(new Insets(20));
+        root.setPadding(new Insets(40));
 
         Label titleLabel = new Label("Crear Nuevo Cargo");
-        titleLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: white;");
+        titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ECF0F1;");
 
         Label infoLabel = new Label("Recuerde que ya existen 4 cargos predeterminados");
-        infoLabel.setStyle("-fx-font-size: 10px; -fx-text-fill: white");
-
+        infoLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #ECF0F1;");
 
         TextField nameField = new TextField();
-        nameField.setPromptText("Digite el nombre del cargo");
+        nameField.setPromptText("Nombre del cargo");
+        nameField.setStyle("-fx-prompt-text-fill: #95A5A6;");
 
         TextField hourValueField = new TextField();
-        hourValueField.setPromptText("Digite el valor pagado por hora del cargo");
+        hourValueField.setPromptText("Valor pagado por hora");
+        hourValueField.setStyle("-fx-prompt-text-fill: #95A5A6;");
 
         Button createButton = new Button("Crear Cargo");
+        createButton.setStyle("-fx-background-color: #27AE60; -fx-text-fill: white; -fx-font-size: 16px;");
         createButton.setOnAction(e -> {
             String name = nameField.getText();
             int hourValue = Integer.parseInt(hourValueField.getText());
-
             createNewJob(name, hourValue);
         });
 
         Button backButton = new Button("Volver");
-        backButton.setOnAction(e -> {
-            primaryStage.setScene(previousScene);
-        });
+        backButton.setStyle("-fx-background-color: #C0392B; -fx-text-fill: white; -fx-font-size: 16px;");
+        backButton.setOnAction(e -> primaryStage.setScene(previousScene));
+
+        VBox.setMargin(titleLabel, new Insets(0, 0, 20, 0));
 
         root.getChildren().addAll(titleLabel, infoLabel, nameField, hourValueField, createButton, backButton);
 
-        Scene scene = new Scene(root, 1280, 720);
+        Scene scene = new Scene(root, 600, 400);
         return scene;
     }
+
 
     private void createNewJob(String name, int hourValue) {
         if (name.isEmpty()) {
