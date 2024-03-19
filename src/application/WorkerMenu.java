@@ -13,8 +13,6 @@ public class WorkerMenu {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
-    WorkerForm workerForm;
-    JobCreator crearRoles;
 
     public WorkerMenu(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
@@ -29,6 +27,9 @@ public class WorkerMenu {
 
 
         VBox tituloMenuPrincipalMenutrab = new VBox(20);
+        tituloMenuPrincipalMenutrab.setAlignment(Pos.CENTER);
+
+        VBox Texto=new VBox(20);
         tituloMenuPrincipalMenutrab.setPadding(new Insets(50, 0, 0, 0));
         tituloMenuPrincipalMenutrab.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
         Label TittleWorkers=new Label("MENU TRABAJADORES");
@@ -37,6 +38,10 @@ public class WorkerMenu {
         tituloMenuPrincipalMenutrab.getChildren().addAll(TittleWorkers);
 
         VBox botones = new VBox(10);
+        botones.setPadding(new Insets(60));
+        botones.setAlignment(Pos.CENTER);
+        //botones.setPadding(new Insets(60,60,60,60));
+
         Button botonCT = new Button(" Crear Trabajadores");
         botonCT.setOnAction(e -> crearTrabajadores());
 
@@ -54,22 +59,22 @@ public class WorkerMenu {
         Button botonVolver=new Button("Volver");
         botonVolver.setOnAction(e -> volver());
 
-        botonCT.setMinWidth(170);
-        botonCT.setMinHeight(120);
-        botonCCarT.setMinWidth(170);
-        botonCCarT.setMinHeight(120);
-        botonMIT.setMinWidth(170);
-        botonMIT.setMinHeight(120);
-        botonCSalT.setMinWidth(170);
-        botonCSalT.setMinHeight(120);
-        botonVolver.setMinWidth(170);
-        botonVolver.setMinHeight(120);
-        botones.getChildren().addAll(botonCT,botonCCarT,botonMIT,botonCSalT,botonVolver);
-        root.setLeft(botones);
+        botonCT.setMinWidth(600);
+        botonCT.setMinHeight(80);
+        botonCCarT.setMinWidth(600);
+        botonCCarT.setMinHeight(80);
+        botonMIT.setMinWidth(600);
+        botonMIT.setMinHeight(80);
+        botonCSalT.setMinWidth(600);
+        botonCSalT.setMinHeight(80);
+        botonVolver.setMinWidth(600);
+        botonVolver.setMinHeight(80);
 
+        botones.getChildren().addAll(botonCT,botonCCarT,botonMIT,botonCSalT,botonVolver);
+
+        root.setCenter(botones);
         Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
-        //primaryStage.setMaximized(true);
 
 
 
@@ -79,7 +84,7 @@ public class WorkerMenu {
 
     private void crearTrabajadores(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        workerForm = new WorkerForm(primaryStage, admin, previousScene);
+        WorkerForm workerForm = new WorkerForm(primaryStage, admin, previousScene);
 
         Scene workerForm1m = workerForm.createCreateWorkerMenu();
         primaryStage.setScene(workerForm1m);
@@ -87,8 +92,8 @@ public class WorkerMenu {
 
     private void crearRoles(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        crearRoles = new JobCreator(primaryStage, admin, previousScene);
-        Scene createRol = crearRoles.createJobScene();
+        CreateRol crearRoles = new CreateRol(primaryStage, admin, previousScene);
+        Scene createRol = crearRoles.createFormRol();
         primaryStage.setScene(createRol);
     }
 
@@ -101,8 +106,8 @@ public class WorkerMenu {
 
     private void obtenerSalario(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        WorkerSalaryCalculator obtenerSalario = new WorkerSalaryCalculator(primaryStage,admin, previousScene);
-        Scene getSalary = obtenerSalario.createSalaryCalculatorScene();
+        WorkerSalaryScene obtenerSalario = new WorkerSalaryScene(primaryStage,admin, previousScene);
+        Scene getSalary = obtenerSalario.createScene();
         primaryStage.setScene(getSalary);
 
     }

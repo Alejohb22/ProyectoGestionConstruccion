@@ -1,6 +1,7 @@
 package application;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,21 +24,23 @@ public class MaterialsMenu {
 
     public Scene createWorkerMenu() {
 
-
-
-
-
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #2F3C45");
 
 
         VBox tituloMenuPrincipalMenutrab = new VBox(20);
+        tituloMenuPrincipalMenutrab.setAlignment(Pos.CENTER_LEFT);
+        tituloMenuPrincipalMenutrab.setPadding(new Insets(80));
+
         tituloMenuPrincipalMenutrab.setPadding(new Insets(50, 0, 0, 0));
         tituloMenuPrincipalMenutrab.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
         Label TittleMaterials=new Label("MENU MATERIALES");
         TittleMaterials.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
         root.setTop(tituloMenuPrincipalMenutrab);
         tituloMenuPrincipalMenutrab.getChildren().addAll(TittleMaterials);
+
+
+
 
         VBox botones = new VBox(10);
         Button botonCM = new Button(" Crear Materiales");
