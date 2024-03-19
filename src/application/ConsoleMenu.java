@@ -36,7 +36,7 @@ public class ConsoleMenu  {
         root.setStyle("-fx-background-color:#2F3C45");
 
 
-                Label titleLabel = new Label("Gestión de Obras de Construcción");
+                Label titleLabel = new Label("GESTION DE OBRAS DE CONSTRUCCIÓN");
         titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: sans-serif");
 
         VBox tituloMenuPrincipal = new VBox(20);

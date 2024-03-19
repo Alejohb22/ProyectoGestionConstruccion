@@ -28,7 +28,7 @@ public class WorkerSalaryCalculator {
     public Scene createSalaryCalculatorScene() {
         VBox root = new VBox(20);
         root.setAlignment(Pos.CENTER);
-        root.setBackground(new Background(new BackgroundFill(Color.rgb(44, 62, 80), CornerRadii.EMPTY, Insets.EMPTY)));
+        root.setStyle("-fx-background-color:#2F3C45");
         root.setPadding(new Insets(40));
 
         Label titleLabel = new Label("Calculadora de Salario de Trabajadores");

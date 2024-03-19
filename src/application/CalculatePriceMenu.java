@@ -1,6 +1,7 @@
 package application;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,6 +35,7 @@ public class CalculatePriceMenu {
         titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
         root.setTop(titleBox);
         titleBox.getChildren().addAll(titleLabel);
+        titleBox.setAlignment(Pos.CENTER);
 
         VBox buttons = new VBox(10);
         Button calculateButton = new Button("Calcular Precio Materiales");

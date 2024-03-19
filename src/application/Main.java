@@ -17,7 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Gestión de Obras de Construcción");
+        primaryStage.setTitle("Gestion de obras de construcción");
 
         ConsoleMenu consoleMenu = new ConsoleMenu(primaryStage, admin, previousScene);
         Scene scene = consoleMenu.createMenu();
