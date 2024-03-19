@@ -13,6 +13,8 @@ public class WorkerMenu {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
+    WorkerForm workerForm;
+    JobCreator crearRoles;
 
     public WorkerMenu(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
@@ -21,10 +23,6 @@ public class WorkerMenu {
     }
 
     public Scene createWorkerMenu() {
-
-
-
-
 
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #2F3C45");
@@ -81,7 +79,7 @@ public class WorkerMenu {
 
     private void crearTrabajadores(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        WorkerForm workerForm = new WorkerForm(primaryStage, admin, previousScene);
+        workerForm = new WorkerForm(primaryStage, admin, previousScene);
 
         Scene workerForm1m = workerForm.createCreateWorkerMenu();
         primaryStage.setScene(workerForm1m);
@@ -89,8 +87,8 @@ public class WorkerMenu {
 
     private void crearRoles(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-            CreateRol crearRoles = new CreateRol(primaryStage, admin, previousScene);
-        Scene createRol = crearRoles.createFormRol();
+        crearRoles = new JobCreator(primaryStage, admin, previousScene);
+        Scene createRol = crearRoles.createJobScene();
         primaryStage.setScene(createRol);
     }
 
@@ -103,8 +101,8 @@ public class WorkerMenu {
 
     private void obtenerSalario(){
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        WorkerSalaryScene obtenerSalario = new WorkerSalaryScene(primaryStage,admin, previousScene);
-        Scene getSalary = obtenerSalario.createScene();
+        WorkerSalaryCalculator obtenerSalario = new WorkerSalaryCalculator(primaryStage,admin, previousScene);
+        Scene getSalary = obtenerSalario.createSalaryCalculatorScene();
         primaryStage.setScene(getSalary);
 
     }
