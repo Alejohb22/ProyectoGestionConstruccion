@@ -45,6 +45,7 @@ public class DeleteMaterialsMenu {
                     + m.getAmount() + " "
                     + m.getUnidadMedida() + " $"
                     + m.getPrecioTotal());
+            materialLabel.setStyle("-fx-text-fill: white;");
             contentBox.getChildren().add(materialLabel);
         }
         TextField materialIdField = new TextField();
