@@ -34,7 +34,7 @@ public class MaterialsMenu {
         tituloMenuPrincipalMenutrab.setPadding(new Insets(50, 0, 0, 0));
         tituloMenuPrincipalMenutrab.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
         Label TittleMaterials=new Label("MENU MATERIALES");
-        TittleMaterials.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
+        TittleMaterials.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: sans-serif;-fx-alignment: center");
         root.setTop(tituloMenuPrincipalMenutrab);
         tituloMenuPrincipalMenutrab.getChildren().addAll(TittleMaterials);
 
