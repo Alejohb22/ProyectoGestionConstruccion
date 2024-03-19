@@ -10,17 +10,16 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import logic.Admin;
-import model.Material;
+import persistence.Controller;
 
 public class CalculatePriceMenu {
     private Stage primaryStage;
-    private Admin admin;
+    private Controller controller;
     private Scene previousScene;
 
-    public CalculatePriceMenu(Stage primaryStage, Admin admin, Scene previousScene) {
+    public CalculatePriceMenu(Stage primaryStage, Controller controller, Scene previousScene) {
         this.primaryStage = primaryStage;
-        this.admin = admin;
+        this.controller = controller;
         this.previousScene = previousScene;
     }
 
@@ -30,79 +29,71 @@ public class CalculatePriceMenu {
 
         VBox titleBox = new VBox(20);
         titleBox.setPadding(new Insets(50, 0, 0, 0));
-        titleBox.setStyle("-fx-background-color: #2F3C45;");//color fondo titulo
-        Label titleLabel = new Label("CALCULAR PRECIO MATERIALES");
-        titleLabel.setStyle("-fx-font-size: 50px; -fx-font-weight: bold;-fx-text-fill: #CAD2C5; -fx-font-family: Algerian;-fx-alignment: center");
-        root.setTop(titleBox);
-        titleBox.getChildren().addAll(titleLabel);
         titleBox.setAlignment(Pos.CENTER);
+        Label titleLabel = new Label("CALCULAR PRECIO MATERIALES");
+        titleLabel.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #CAD2C5; -fx-font-family: Algerian;");
+        titleBox.getChildren().add(titleLabel);
+        root.setTop(titleBox);
 
-        VBox buttons = new VBox(10);
+        VBox buttons = new VBox(30);
+        buttons.setAlignment(Pos.CENTER);
         Button calculateButton = new Button("Calcular Precio Materiales");
         calculateButton.setOnAction(e -> calculatePrice());
         Button backButton = new Button("Volver");
         backButton.setOnAction(e -> goBack());
-        calculateButton.setMinWidth(170);
-        calculateButton.setMinHeight(120);
-        backButton.setMinWidth(170);
-        backButton.setMinHeight(120);
+        setButtonStyle(calculateButton);
+        setButtonStyle(backButton);
         buttons.getChildren().addAll(calculateButton, backButton);
-        root.setLeft(buttons);
+        root.setCenter(buttons);
 
-        Scene scene = new Scene(root, 1280, 720);
+        Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);
         return scene;
     }
 
-
-
     private void calculatePrice() {
-        if (admin.getListMaterH().size() > 0) {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Seleccionar Material");
-            dialog.setHeaderText(null);
-            dialog.setContentText("Ingrese el ID del material que desea calcular el precio:");
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Seleccionar Material");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Ingrese el ID del material que desea calcular el precio:");
 
-            String sel = "";
-            while (true) {
-                dialog.showAndWait();
-                sel = dialog.getResult();
-                if (sel == null || sel.isEmpty()) {
-                    showAlert("Error", "Por favor, ingrese un ID válido.");
-                } else if (!admin.getListMaterH().containsKey(sel)) {
-                    showAlert("Error", "El ID del material ingresado no existe.");
+        String idMaterial = "";
+        while (true) {
+            dialog.showAndWait();
+            idMaterial = dialog.getResult();
+            if (idMaterial == null || idMaterial.isEmpty()) {
+                showAlert("Error", "Por favor, ingrese un ID válido.");
+            } else {
+                break;
+            }
+        }
+
+        TextInputDialog quantityDialog = new TextInputDialog();
+        quantityDialog.setTitle("Cantidad a calcular precio");
+        quantityDialog.setHeaderText(null);
+        quantityDialog.setContentText("Ingrese la cantidad:");
+
+        double cantidad = 0;
+        while (true) {
+            quantityDialog.showAndWait();
+            String quantityStr = quantityDialog.getResult();
+            try {
+                cantidad = Double.parseDouble(quantityStr);
+                if (cantidad <= 0) {
+                    showAlert("Error", "La cantidad debe ser un número positivo.");
                 } else {
                     break;
                 }
+            } catch (NumberFormatException e) {
+                showAlert("Error", "Por favor, ingrese un número válido para la cantidad.");
             }
+        }
 
-            Material selectedMaterial = admin.getListMaterH().get(sel);
-
-            TextInputDialog quantityDialog = new TextInputDialog();
-            quantityDialog.setTitle("Cantidad a calcular precio");
-            quantityDialog.setHeaderText(null);
-            quantityDialog.setContentText("Ingrese la cantidad de " + selectedMaterial.getUnidadMedida() + " que desea calcular:");
-
-            while (true) {
-                quantityDialog.showAndWait();
-                String quantityStr = quantityDialog.getResult();
-                try {
-                    double cantidad = Double.parseDouble(quantityStr);
-                    if (cantidad <= 0) {
-                        showAlert("Error", "La cantidad debe ser un número positivo.");
-                    } else {
-                        selectedMaterial.setAmount(cantidad);
-                        selectedMaterial.calcularPrecioMaterial();
-                        double precioTotal = selectedMaterial.getPrecioTotal();
-                        showInformationAlert("Precio Total", "El precio total para " + cantidad + " " + selectedMaterial.getUnidadMedida() + " de " + selectedMaterial.getName() + " es: " + precioTotal);
-                        break;
-                    }
-                } catch (NumberFormatException e) {
-                    showAlert("Error", "Por favor, ingrese un número válido para la cantidad.");
-                }
-            }
+        double precioTotal = controller.calcularPrecioMaterial(idMaterial, cantidad);
+        if (precioTotal != -1) {
+            showInformationAlert("Precio Total", "El precio total para " + cantidad + " unidades del material es: $" + precioTotal);
         } else {
-            showAlert("Error", "No hay materiales disponibles para calcular el precio.");
+            showAlert("Error", "El ID del material ingresado no existe.");
         }
     }
 
@@ -121,10 +112,13 @@ public class CalculatePriceMenu {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
+    private void setButtonStyle(Button button) {
+        button.setStyle("-fx-background-color: #3498DB; -fx-text-fill: white; -fx-font-size: 18px; -fx-padding: 10px 20px;");
+    }
 
     private void goBack() {
         primaryStage.setScene(previousScene);
     }
 }
+
+

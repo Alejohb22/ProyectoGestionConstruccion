@@ -5,7 +5,7 @@ import java.util.*;
 //import javax.swing.JOptionPane;
 
 import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 import logic.Utilidades;
 import model.Job;
 import model.Material;

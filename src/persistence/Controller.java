@@ -1,6 +1,7 @@
-package logic;
+package persistence;
 
 import com.google.gson.reflect.TypeToken;
+import logic.Utilidades;
 import model.Job;
 import model.Material;
 import model.Worker;
@@ -236,5 +237,40 @@ public class Controller {
             return -1; // Otra forma de manejar esto sería lanzar una excepción para indicar que el trabajador no existe
         }
     }
+
+    public double calcularPrecioMaterial(String idMaterial, double cantidad) {
+        loadMaterial(); // Cargar datos de los materiales
+        for (Material material : resultMaterial) {
+            if (material.getId().equals(idMaterial)) {
+                // Encontrar el material por su ID
+                material.setAmount(cantidad); // Establecer la cantidad
+                material.calcularPrecioMaterial(); // Calcular el precio total
+                return material.getPrecioTotal(); // Devolver el precio total
+            }
+        }
+        return -1; // Si no se encuentra el material, devolver -1
+    }
+
+    public double calcDailyExpense() {
+        loadWorker(); // Cargar datos de los trabajadores
+        loadMaterial(); // Cargar datos de los materiales
+
+        double totalExpense = 0.0;
+
+        // Sumar los salarios de los trabajadores
+        for (Worker worker : result) {
+            totalExpense += worker.getSalary();
+        }
+
+        // Sumar el precio total de los materiales
+        for (Material material : resultMaterial) {
+            totalExpense += material.getPrecioTotal();
+        }
+
+        return totalExpense;
+    }
+
+
+
 
 }

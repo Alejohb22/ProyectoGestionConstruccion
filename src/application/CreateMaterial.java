@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 import model.Material;
 
 public class CreateMaterial {

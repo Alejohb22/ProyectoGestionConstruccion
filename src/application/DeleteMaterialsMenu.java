@@ -8,11 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 import model.Material;
 
 public class DeleteMaterialsMenu {

@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 
 public class WorkerMenu {
     private Stage primaryStage;

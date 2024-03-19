@@ -1,6 +1,5 @@
 package application;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import logic.Admin;
-import model.Job;
+import persistence.Controller;
 
 public class ConsoleMenu  {
     private Stage primaryStage;
@@ -94,7 +93,7 @@ public class ConsoleMenu  {
 
         calcularButton.setMinWidth(400);
         calcularButton.setAlignment(Pos.CENTER);
-        //calcularButton.setOnAction(e -> calSalary());
+        calcularButton.setOnAction(e -> calSalary());
 
         Button salirButton = new Button("Salir");
         salirButton.setStyle("-fx-font-size: 18px; -fx-background-color: #354F53; -fx-text-fill: white;-fx-font-family: sans-serif");
@@ -139,4 +138,12 @@ public class ConsoleMenu  {
         primaryStage.setScene(materialsMenu);
 
 
-}}
+}
+    private void calSalary(){
+        Controller controller = new Controller(); // Crear una instancia de Controller
+        SalaryCalculator salaryCalculator = new SalaryCalculator(primaryStage,controller,previousScene);
+        Scene salary = salaryCalculator.createSalaryCalculatorScene();
+        primaryStage.setScene(salary);
+    }
+
+}

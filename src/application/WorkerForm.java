@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 import model.Job;
 import model.Worker;
 

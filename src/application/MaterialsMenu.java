@@ -6,11 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
-import logic.Controller;
+import persistence.Controller;
 
 public class MaterialsMenu {
     private Stage primaryStage;
@@ -110,7 +109,8 @@ public class MaterialsMenu {
     }
 
     private void calcularPrecioMateriales(){
-        CalculatePriceMenu calculatePriceMenu = new CalculatePriceMenu(primaryStage, admin, primaryStage.getScene());
+        Controller controller = new Controller(); // Crear una instancia de Controller
+        CalculatePriceMenu calculatePriceMenu = new CalculatePriceMenu(primaryStage, controller, primaryStage.getScene());
         Scene calculatePriceScene = calculatePriceMenu.createCalculatePriceMenu();
         primaryStage.setScene(calculatePriceScene);
 
