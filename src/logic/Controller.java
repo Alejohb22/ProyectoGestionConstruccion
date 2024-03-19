@@ -2,6 +2,7 @@ package logic;
 
 import com.google.gson.reflect.TypeToken;
 import model.Job;
+import model.Material;
 import model.Worker;
 import persistence.Archivo;
 
@@ -17,9 +18,15 @@ public class Controller {
 
     private ArrayList<Worker> result;
     private ArrayList<Job> resultJob;
+    private ArrayList<Material> resultMaterial;
     public Controller(){
         result = new ArrayList<>();
         resultJob = new ArrayList<>();
+        resultMaterial = new ArrayList<>();
+    }
+
+    public ArrayList<Material> getResultMaterial() {
+        return resultMaterial;
     }
 
     public ArrayList<Worker> getResult() {
@@ -79,6 +86,37 @@ public class Controller {
 
         return job;
     }
+    public Material addMaterial(Material material){
+        Gson gson = new Gson();
+
+        loadMaterial();
+        resultMaterial.add(material);
+        try (PrintWriter out = new PrintWriter(new FileWriter("./Resources/materials.json"))) {
+            String jsonString = "[";
+            int count = 1;
+            for(Material w:resultMaterial){
+                if(count == resultMaterial.size()){
+                    jsonString += gson.toJson(w);
+                }else{
+                    jsonString += gson.toJson(w)+",";
+                }
+                count++;
+            }
+            jsonString +="]";
+            out.write(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return material;
+    }
+    public void loadMaterial(){
+        Gson gson = new Gson();
+        String content = readFileMaterial();
+        Type type = new TypeToken<List<Material>>(){}.getType();
+        resultMaterial = gson.fromJson(content,type);
+    }
     public void loadWorker(){
         Gson gson = new Gson();
         String content = readFile();
@@ -107,6 +145,22 @@ public class Controller {
 
         }
 
+    }
+    public String readFileMaterial(){
+        try {
+            BufferedReader input = new BufferedReader(
+                    new InputStreamReader(this.getClass().getResourceAsStream("/materials.json"), Charset.defaultCharset()));{
+                String line = null;
+                StringBuilder output = new StringBuilder();
+                while((line = input.readLine()) != null){
+                    output.append(line);
+                }
+                return output.toString();
+            }
+        }catch (IOException e){
+            e.getMessage();
+        }
+        return null;
     }
     public String readFile(){
         try {
