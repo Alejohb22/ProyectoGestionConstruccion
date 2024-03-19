@@ -17,15 +17,13 @@ import model.Material;
 
 public class DeleteMaterialsMenu {
     private Stage primaryStage;
-    private Admin admin;
     private Scene previousScene;
     private Controller controller;
 
-    public DeleteMaterialsMenu(Stage primaryStage, Admin admin, Scene previousScene) {
+    public DeleteMaterialsMenu(Stage primaryStage, Scene previousScene) {
         this.primaryStage = primaryStage;
-        this.admin = admin;
         this.previousScene = previousScene;
-        controller = new Controller();
+        this.controller = new Controller();
     }
 
     public Scene createDeleteMaterialsMenu() {
@@ -73,8 +71,7 @@ public class DeleteMaterialsMenu {
     }
 
     private void deleteMaterial(String materialId) {
-        if (admin.getListMaterH().containsKey(materialId)) {
-            admin.getListMaterH().remove(materialId);
+        if (controller.deleteMaterial(materialId)) {
             showAlert("Material Eliminado", "Material eliminado con éxito.");
         } else {
             showAlert("Error", "El ID del material ingresado no existe.");
@@ -93,4 +90,3 @@ public class DeleteMaterialsMenu {
         alert.showAndWait();
     }
 }
-

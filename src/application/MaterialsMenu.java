@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
 
 public class MaterialsMenu {
     private Stage primaryStage;
@@ -116,7 +117,8 @@ public class MaterialsMenu {
     }
 
     private void eliminarMateriales(){
-        DeleteMaterialsMenu deleteMaterialsMenu = new DeleteMaterialsMenu(primaryStage, admin, primaryStage.getScene());
+        Controller controller = new Controller(); // Crear una instancia de Controller
+        DeleteMaterialsMenu deleteMaterialsMenu = new DeleteMaterialsMenu(primaryStage,  primaryStage.getScene());
         Scene deleteMaterial = deleteMaterialsMenu.createDeleteMaterialsMenu();
         primaryStage.setScene(deleteMaterial);
 

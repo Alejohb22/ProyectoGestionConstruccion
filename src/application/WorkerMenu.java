@@ -8,11 +8,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
 
 public class WorkerMenu {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
+
+    private Controller controller;
 
     public WorkerMenu(Stage primaryStage, Admin admin) {
         this.primaryStage = primaryStage;
@@ -122,8 +125,9 @@ public class WorkerMenu {
     }
 
     private void obtenerSalario(){
+        Controller controller = new Controller(); // Crear una instancia de Controller
         Scene previousScene = primaryStage.getScene(); // Store the current scene
-        WorkerSalaryCalculator obtenerSalario = new WorkerSalaryCalculator(primaryStage,admin, previousScene);
+        WorkerSalaryCalculator obtenerSalario = new WorkerSalaryCalculator(primaryStage,controller, previousScene);
         Scene getSalary = obtenerSalario.createSalaryCalculatorScene();
         primaryStage.setScene(getSalary);
 

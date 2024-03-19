@@ -12,16 +12,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
 import logic.Utilidades;
 
 public class WorkerSalaryCalculator {
     private Stage primaryStage;
-    private Admin admin;
+    private Controller controller;
     private Scene previousScene;
 
-    public WorkerSalaryCalculator(Stage primaryStage, Admin admin, Scene previousScene) {
+    public WorkerSalaryCalculator(Stage primaryStage, Controller controller, Scene previousScene) {
         this.primaryStage = primaryStage;
-        this.admin = admin;
+        this.controller = controller;
         this.previousScene = previousScene;
     }
 
@@ -62,9 +63,8 @@ public class WorkerSalaryCalculator {
             int numHorasTrabajadas = 0;
             try {
                 numHorasTrabajadas = Integer.parseInt(hoursField.getText());
-                int pos = new Utilidades().buscarSecuencial(admin.getListWorker(), idTrabajador);
-                if (pos != -1) {
-                    double salario = admin.getListWorker().get(pos).CalcularSalary(numHorasTrabajadas);
+                double salario = controller.calcularSalarioTrabajador(idTrabajador, numHorasTrabajadas);
+                if (salario != -1) {
                     resultLabel.setText("El salario del trabajador es $" + salario);
                 } else {
                     resultLabel.setText("ID de trabajador no registrado");
@@ -83,5 +83,4 @@ public class WorkerSalaryCalculator {
         Scene scene = new Scene(root, 600, 400);
         return scene;
     }
-
 }

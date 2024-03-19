@@ -111,6 +111,36 @@ public class Controller {
 
         return material;
     }
+
+    public boolean deleteMaterial(String materialId) {
+        loadMaterial(); // Cargar los materiales existentes
+        Material materialToRemove = null;
+        // Buscar el material por su ID
+        for (Material material : resultMaterial) {
+            if (material.getId().equals(materialId)) {
+                materialToRemove = material; // Encontrar el material a eliminar
+                break;
+            }
+        }
+        if (materialToRemove != null) {
+            resultMaterial.remove(materialToRemove); // Eliminar el material
+            saveMaterial(); // Guardar los cambios
+            return true; // Indicar que el material se eliminó correctamente
+        } else {
+            return false; // Indicar que el material no se encontró o no se pudo eliminar
+        }
+    }
+
+    private void saveMaterial() {
+        Gson gson = new Gson();
+        try (PrintWriter out = new PrintWriter(new FileWriter("./Resources/materials.json"))) {
+            String jsonString = gson.toJson(resultMaterial);
+            out.write(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadMaterial(){
         Gson gson = new Gson();
         String content = readFileMaterial();
@@ -194,4 +224,17 @@ public class Controller {
         }
         return null;
     }
+
+    public double calcularSalarioTrabajador(String idTrabajador, int numHorasTrabajadas) {
+        loadWorker(); // Cargar datos de los trabajadores
+        int pos = new Utilidades().buscarSecuencial(result, idTrabajador); // Buscar el trabajador por su ID
+        if (pos != -1) {
+            // Calcular el salario del trabajador en base a las horas trabajadas
+            return result.get(pos).CalcularSalary(numHorasTrabajadas);
+        } else {
+            // El ID del trabajador no está registrado
+            return -1; // Otra forma de manejar esto sería lanzar una excepción para indicar que el trabajador no existe
+        }
+    }
+
 }
