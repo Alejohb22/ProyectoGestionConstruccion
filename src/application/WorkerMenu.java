@@ -44,7 +44,7 @@ public class WorkerMenu {
 
         Button botonCT = new Button(" Crear Trabajadores");
         botonCT.setOnAction(e -> crearTrabajadores());
-
+    //Botones
 
         Button botonCCarT=new Button("Crear Roles para Trabajadores");
         botonCCarT.setOnAction(e -> crearRoles());
