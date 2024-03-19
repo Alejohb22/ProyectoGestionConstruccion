@@ -27,9 +27,8 @@ public class MaterialsMenu {
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #2F3C45");
 
-
         VBox tituloMenuPrincipalMenutrab = new VBox(20);
-        tituloMenuPrincipalMenutrab.setAlignment(Pos.CENTER_LEFT);
+        tituloMenuPrincipalMenutrab.setAlignment(Pos.CENTER);
         tituloMenuPrincipalMenutrab.setPadding(new Insets(80));
 
         tituloMenuPrincipalMenutrab.setPadding(new Insets(50, 0, 0, 0));
@@ -43,33 +42,49 @@ public class MaterialsMenu {
 
 
         VBox botones = new VBox(10);
+        botones.setPadding(new Insets(60));
+        botones.setAlignment(Pos.CENTER);
+
         Button botonCM = new Button(" Crear Materiales");
        // botonCT.setOnAction(e -> crearTrabajadores());
+        botonCM.setOnMouseEntered(e -> botonCM.setStyle("-fx-background-color: #AAB6A2;"));
+        botonCM.setOnMouseExited(e -> botonCM.setStyle("-fx-background-color: #CAD2C5;"));
         botonCM.setOnAction(e -> crearMaterial());
+        botonCM.setStyle("-fx-background-color: #CAD2C5;");
+
 
         Button botonEM=new Button("Eliminar Materiales");
+        botonEM.setOnMouseEntered(e -> botonEM.setStyle("-fx-background-color: #AAB6A2;"));
+        botonEM.setOnMouseExited(e -> botonEM.setStyle("-fx-background-color: #CAD2C5;"));
         botonEM.setOnAction(e -> eliminarMateriales());
+        botonEM.setStyle("-fx-background-color: #CAD2C5;");
 
         Button botonCPM=new Button("Calcular precio materiales");
+        botonCPM.setOnMouseEntered(e -> botonCPM.setStyle("-fx-background-color: #AAB6A2;"));
+        botonCPM.setOnMouseExited(e -> botonCPM.setStyle("-fx-background-color: #CAD2C5;"));
         botonCPM.setOnAction(e -> calcularPrecioMateriales());
+        botonCPM.setStyle("-fx-background-color: #CAD2C5;");
 
 
 
         Button botonVolver=new Button("Volver");
+        botonVolver.setOnMouseEntered(e -> botonVolver.setStyle("-fx-background-color: #AAB6A2;"));
+        botonVolver.setOnMouseExited(e -> botonVolver.setStyle("-fx-background-color: #CAD2C5;"));
         botonVolver.setOnAction(e -> volver());
+        botonVolver.setStyle("-fx-background-color: #CAD2C5;");
 
 
-        botonCM.setMinWidth(170);
-        botonCM.setMinHeight(120);
-        botonCPM.setMinWidth(170);
-        botonCPM.setMinHeight(120);
-        botonEM.setMinWidth(170);
-        botonEM.setMinHeight(120);
+        botonCM.setMinWidth(600);
+        botonCM.setMinHeight(80);
+        botonCPM.setMinWidth(600);
+        botonCPM.setMinHeight(80);
+        botonEM.setMinWidth(600);
+        botonEM.setMinHeight(80);
 
-        botonVolver.setMinWidth(170);
-        botonVolver.setMinHeight(120);
+        botonVolver.setMinWidth(600);
+        botonVolver.setMinHeight(80);
         botones.getChildren().addAll(botonCM,botonCPM,botonEM,botonVolver);
-        root.setLeft(botones);
+        root.setCenter(botones);
 
         Scene scene = new Scene(root, 1280, 720);
         primaryStage.setScene(scene);
