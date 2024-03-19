@@ -43,20 +43,37 @@ public class WorkerMenu {
         //botones.setPadding(new Insets(60,60,60,60));
 
         Button botonCT = new Button(" Crear Trabajadores");
+        botonCT.setStyle("-fx-background-color: #CAD2C5;");
+        botonCT.setOnMouseEntered(e -> botonCT.setStyle("-fx-background-color: #AAB6A2;"));
+        botonCT.setOnMouseExited(e -> botonCT.setStyle("-fx-background-color: #CAD2C5;"));
         botonCT.setOnAction(e -> crearTrabajadores());
-    //Botones
+
+        //Botones
 
         Button botonCCarT=new Button("Crear Roles para Trabajadores");
+        botonCCarT.setStyle("-fx-background-color: #CAD2C5");
+        botonCCarT.setOnMouseEntered(e -> botonCCarT.setStyle("-fx-background-color: #AAB6A2;"));
+        botonCCarT.setOnMouseExited(e -> botonCCarT.setStyle("-fx-background-color: #CAD2C5;"));
+
         botonCCarT.setOnAction(e -> crearRoles());
 
         Button botonMIT=new Button("Mostrar la informacion de los trabajadores");
+        botonMIT.setStyle("-fx-background-color: #CAD2C5");
+        botonMIT.setOnMouseEntered(e -> botonMIT.setStyle("-fx-background-color: #AAB6A2;"));
+        botonMIT.setOnMouseExited(e -> botonMIT.setStyle("-fx-background-color: #CAD2C5;"));
         botonMIT.setOnAction(e -> obtenerInformacionTrabajadores());
 
         Button botonCSalT=new Button("Calcular salario de los trabajadores");
+        botonCSalT.setStyle("-fx-background-color: #CAD2C5");
+        botonCSalT.setOnMouseEntered(e -> botonCSalT.setStyle("-fx-background-color: #AAB6A2;"));
+        botonCSalT.setOnMouseExited(e -> botonCSalT.setStyle("-fx-background-color: #CAD2C5;"));
         botonCSalT.setOnAction(e -> obtenerSalario());
 
 
         Button botonVolver=new Button("Volver");
+        botonVolver.setStyle("-fx-background-color: #CAD2C5");
+        botonVolver.setOnMouseEntered(e -> botonVolver.setStyle("-fx-background-color: #AAB6A2;"));
+        botonVolver.setOnMouseExited(e -> botonVolver.setStyle("-fx-background-color: #CAD2C5;"));
         botonVolver.setOnAction(e -> volver());
 
         botonCT.setMinWidth(600);
