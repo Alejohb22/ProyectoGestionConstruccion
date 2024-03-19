@@ -12,16 +12,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
+import model.Material;
 
 public class CreateMaterial {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
+    private Controller controller;
 
     public CreateMaterial(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
         this.previousScene = previousScene;
+        controller = new Controller();
     }
     public Scene createMaterialForm() {
 
@@ -70,20 +74,31 @@ public class CreateMaterial {
 
                 try {
                     Double.parseDouble(precioUnitario);
-                    agregar =+ 1;
+                    agregar += 1;
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null,"El precio no debe contener String ni carácteres especiales");
                 }
 
                 try {
-                    Integer.parseInt(cantidad);
-                    agregar =+ 1;
+                    Double.parseDouble(cantidad);
+                    agregar += 1;
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null,"La cantidad no debe contener String ni carácteres especiales, debe ser un número entero");
+                    JOptionPane.showMessageDialog(null,"La cantidad no debe contener String ni carácteres especiales");
                 }
 
                 if(agregar == 2) {
+                    double precio = Double.parseDouble(precioUnitario);
+                    double cant = Double.parseDouble(cantidad);
+                    double total = precio*cant;
+                    Material m = new Material();
 
+                    m.setName(nombreMaterial);
+                    m.setUnidadMedida(unidadMaterial);
+                    m.setPrecio(precio);
+                    m.setAmount(cant);
+                    m.setPrecioTotal(total);
+
+                    controller.addMaterial(m);
                 }
             }
 

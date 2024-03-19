@@ -10,16 +10,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Admin;
+import logic.Controller;
+import model.Material;
 
 public class DeleteMaterialsMenu {
     private Stage primaryStage;
     private Admin admin;
     private Scene previousScene;
+    private Controller controller;
 
     public DeleteMaterialsMenu(Stage primaryStage, Admin admin, Scene previousScene) {
         this.primaryStage = primaryStage;
         this.admin = admin;
         this.previousScene = previousScene;
+        controller = new Controller();
     }
 
     public Scene createDeleteMaterialsMenu() {
@@ -35,11 +39,12 @@ public class DeleteMaterialsMenu {
         titleBox.getChildren().addAll(titleLabel);
 
         VBox contentBox = new VBox(10);
-        for (String materialId : admin.getListMaterH().keySet()) {
-            Label materialLabel = new Label(materialId + " " + admin.getListMaterH().get(materialId).getName() + " "
-                    + admin.getListMaterH().get(materialId).getAmount() + " "
-                    + admin.getListMaterH().get(materialId).getUnidadMedida() + " $"
-                    + admin.getListMaterH().get(materialId).getPrecioTotal());
+        controller.loadMaterial();
+        for (Material m : controller.getResultMaterial()) {
+            Label materialLabel = new Label(m.getId() + " " + m.getName() + " "
+                    + m.getAmount() + " "
+                    + m.getUnidadMedida() + " $"
+                    + m.getPrecioTotal());
             contentBox.getChildren().add(materialLabel);
         }
         TextField materialIdField = new TextField();
